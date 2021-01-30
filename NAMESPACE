@@ -1,0 +1,8 @@
+exportPattern("^[[:alpha:]]+")
+   importFrom("grDevices", "gray", "hcl")
+   importFrom("graphics", "abline", "axis", "image", "layout", "lines",
+              "mtext", "par", "plot", "points", "segments", "title")
+   importFrom("stats", "ARMAtoMA", "acf", "approx", "ar.burg", "ar.mle",
+              "ar.yw", "arima", "arima.sim", "coef", "fft", "lm",
+              "na.pass", "pchisq", "predict", "rnorm", "spec.pgram",
+              "vcov")
