@@ -18,7 +18,7 @@ t=1:n
 #Plot Data
 #
 #
-if(n <=200) {plot(t,x,type='o',xaxt='n',yaxt='n',cex=0.5,pch=16,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='')}
+if(n <=200) {plot(t,x,type='o',xaxt='n',yaxt='n',cex=0.5,pch=16,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab=''), col = "blue"}
 if(n > 200) {plot(t,x,type='l',xaxt='n',yaxt='n',cex=0.5,pch=16,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='')}
 axis(side=1,cex.axis=.9,mgp=c(3,0.15,0),tcl=-.3);
 axis(side=2,las=1,cex.axis=.9,mgp=c(3,.4,0),tcl=-.3)
