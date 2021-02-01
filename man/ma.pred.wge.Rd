@@ -12,7 +12,8 @@
 \value{
   \item{x}{Original data}
   \item{pred}{Data file showing 1-step ahead predictors up to x(k.ahead)}
-  \item{order}{Order (odd or even integer) of the moving average predictor)}
+  \item{order}{Order (odd or even integer) of the moving average predictor}
+  }
 \references{"Practical Time Series Analysis with R" by Woodward, Sadler, and Robertson"}
 \author{Wayne Woodward}
 \examples{data(wtcrude)
