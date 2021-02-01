@@ -6,20 +6,10 @@
 #
 #
 #
-factor.wge=function(phi)
+factor.wge=function(phi=0,theta=0)
 {
 #
-# phi is a vector containing the coefficients (AR or MA) defining the polynomial to be factored
-#
-mphi=format(round(phi, 4), trim=T, nsmall = 4)
-cat('\n')
-cat('Coefficients of Original polynomial: ','\n')
-cat(mphi,'\n')
-cat('\n')
-cat('Factor                 Roots                Abs Recip    System Freq','\n')
-mphi=-phi
-one=c(1)
-coef=c(one,mphi)   # these are the actual coefficients of the pth order polynomial
+rootswge=function(coef){
 root=polyroot(coef)    # with signs in characteristic equation
 	root1 <- sort(root)
 	temp1 <- rep(0, 5)
@@ -82,7 +72,49 @@ if(fc1>0) cat(sep="","1-",afc14,"B","              ",rootr4,"               ",ab
 cat(' ','\n')
 cat(' ','\n')
 }
-
+#
+#
+#cat('phi,theta',phi,theta,'\n')
+#
+psq=phi^2
+spsq=sum(psq)
+if(spsq !=0) {one=1
+cat(' ','\n')
+cat(' ','\n')
+cat('Coefficients of AR polynomial: ','\n')
+mphi=format(round(phi, 4), trim=T, nsmall = 4)
+cat(mphi,'\n')
+one=c(1)
+mphi=-phi
+#cat('mphi',mphi,'\n')
+coef=c(one,mphi)
+#cat('coefar',coef,'\n')
+cat('\n')
+cat('                           AR Factor Table','\n')
+cat('Factor                 Roots                Abs Recip    System Freq','\n')
+rootswge(coef)
+    }
+#
+#
+qsq=theta^2
+sqsq=sum(qsq)
+if(sqsq !=0) {one=1
+cat(' ','\n')
+cat(' ','\n')
+cat('Coefficients of MA polynomial: ','\n')
+mtheta=format(round(theta, 4), trim=T, nsmall = 4)
+cat(mtheta,'\n')
+mtheta=-theta
+one=1
+coef=c(1,mtheta)
+cat('\n')
+cat('                              MA FACTOR TABLE','\n')
+cat('Factor                 Roots                Abs Recip    System Freq','\n')
+rootswge(coef)
+}
+#
+#
+}
 
 
 

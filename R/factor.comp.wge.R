@@ -10,8 +10,8 @@ factor.comp.wge=function(x,aic=FALSE,p,ncomp)
 #cat('Coefficients of Original polynomial: ', phi,'\n')
 #cat(file=report,'Coefficients of Original polynomial: ', phi,'\n')
 n=length(x)
-phi.mle=ar.mle(x,order.max=p,aic=FALSE)
-phi=phi.mle$ar
+phi.burg=ar.burg(x,order.max=p,aic=FALSE)
+phi=phi.burg$ar
 phi
 factor.wge(phi)
 mphi=-phi

@@ -9,7 +9,7 @@
 # Plot a time series realization, x, sample autocorrelations, periodogram, and Parzen window smoother (based on #default truncation point 2(n)^.5)
 #
 #
-plotts.sample.wge=function(x,lag.max=25,trunc=0,arlimits=FALSE) 
+plotts.sample.wge=function(x,lag.max=25,trunc=0,arlimits=FALSE,periodogram=FALSE) 
 {
 #
 #
@@ -22,13 +22,20 @@ plotts.sample.wge=function(x,lag.max=25,trunc=0,arlimits=FALSE)
 #          trunc>0 is a user specified truncation point, i.e. calculations will be based on 
 #          ar limits is a logical variable specifying whether 95% limit lines will be included on sample autocorrelation plots
 #
-fig.width <- 5.5
-fig.height <- 4.5
-cex.labs <- c(.8,.7,.9)
+xbar=mean(x)
+cex.labs=c(1,1,1)
+if(periodogram == TRUE) {
+dev.new(width=8,height=6.5)
+numrows=2
+numcols=2
+par(mfrow=c(numrows,numcols),mar=c(4.3,3.5,1.6,1))}
 #
-numrows <- 2
-numcols <- 2
-par(mfrow=c(numrows,numcols),mar=c(3.8,2.5,1,1))
+if(periodogram == FALSE) {
+dev.new(width=11,height=3)
+numrows=1
+numcols=3
+par(mfrow=c(numrows,numcols),mar=c(4.3,3.5,1.6,1))}
+#
 #
 n=length(x)
 nm1=n-1
@@ -41,18 +48,20 @@ aut=acf(x,lag.max=n-1,plot=FALSE)$acf
 #aut=acf(x,lag.max=naut,plot=FALSE) 
 #
 #
-#Plot Data
+#PLOT DATA
 #
 #
-if (n < 200) {plot(t,x,type='o',xaxt='n',yaxt='n',cex=0.5,pch=16,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='')}
-if (n >= 200) {plot(t,x,type='l',xaxt='n',yaxt='n',cex=0.5,pch=16,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='')}
-axis(side=1,cex.axis=.9,mgp=c(3,0.15,0),tcl=-.3);
-axis(side=2,las=1,cex.axis=.9,mgp=c(3,.4,0),tcl=-.3)
-mtext(side=c(1,2,1),cex=cex.labs,text=c('Time','','Realization'),line=c(1,1.1,2.1))
+if (n < 200) {plot(t,x,type='o',xaxt='n',yaxt='n',cex=0.5,pch=16,cex.lab=.75,lwd=.75,xlab='',ylab='')}
+if (n >= 200) {plot(t,x,type='l',xaxt='n',yaxt='n',cex=0.5,pch=16,cex.lab=.75,lwd=.75,xlab='',ylab='')}
+if(periodogram==FALSE) {axis(side=1,cex.axis=1.4,mgp=c(3,0.45,0),tcl=-.3)};
+if(periodogram==TRUE) {axis(side=1,cex.axis=1.2,mgp=c(3,0.45,0),tcl=-.3)};
+if(periodogram==FALSE) {axis(side=2,las=1,cex.axis=1.4,mgp=c(3,.45,0),tcl=-.3)}
+if(periodogram==TRUE) {axis(side=2,las=1,cex.axis=1.2,mgp=c(3,.45,0),tcl=-.3)}
+mtext(side=c(1,2,1),cex=cex.labs,text=c('Time','','Realization'),line=c(1.7,1.8,3))
 #                 }
 #
 #
-# Plot Sample Autocorrelations
+# SAMPLE AUTOCORRELATIOS
 #
 #
 ul=2/sqrt(n)
@@ -62,48 +71,21 @@ plot(k,autplt,type='h',xaxt='n',yaxt='n',cex=0.0,cex.lab=.75,cex.axis=.75,lwd=.7
 abline(h=0)
 if(arlimits==TRUE) {abline(h=ul,lty=2)
                     abline(h=-ul,lty=2)}
-axis(side=1,cex.axis=.8,mgp=c(3,0.15,0),tcl=-.3);
-axis(side=2,las=1,cex.axis=.8,mgp=c(3,.4,0),tcl=-.3)
-mtext(side=c(1,2,1),cex=cex.labs,text=c('Lag','','Sample Autocorrelations'),line=c(1,1.1,2.1))
+if(periodogram==FALSE) {axis(side=1,cex.axis=1.4,mgp=c(3,0.45,0),tcl=-.3)};
+if(periodogram==TRUE) {axis(side=1,cex.axis=1.2,mgp=c(3,0.45,0),tcl=-.3)};
+if(periodogram==FALSE) {axis(side=2,las=1,cex.axis=1.4,mgp=c(3,.45,0),tcl=-.3)}
+if(periodogram==TRUE) {axis(side=2,las=1,cex.axis=1.2,mgp=c(3,.45,0),tcl=-.3)}
+mtext(side=c(1,2,1),cex=cex.labs,text=c('Lag','','Sample Autocorrelations'),line=c(1.7,1.8,3))
 #                }
 #
+
 #
-# Plot Periodogram
+#
+# PARZEN WINDOW
 #
 #
   freq=(1:floor(n/2))/n
   nf=length(freq)
-  pgram=rep(0,nf)
-  for (i in 1:nf)
-  {
-      cosvector=cos(2*pi*freq[i]*(1:(n-1)))
-#cat('i, cosvector',i, cosvector,'\n')
-      pgram[i]=aut[1]+2*sum(aut[-1]*cosvector)
-#cat('i, freq[i],pgram[i]',i,freq[i],pgram[i],'\n')
- }
-#
-#
-#list(freq=freq,pgram=pgram)
-#} 
-#
-#
-#
-#
-db=10*log10(pgram)
-nf=length(db)
-min.per=min(db[1:nf])
-if(n <= 200) {plot(freq,db,type='n',xaxt='n',yaxt='n',cex=0.5,pch=16,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='')}
-if(n > 200) {plot(freq,db,type='l',xaxt='n',yaxt='n',cex=0.5,pch=16,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='')}
-axis(side=1,cex.axis=.8,mgp=c(3,0.15,0),tcl=-.3);
-axis(side=2,las=1,cex.axis=.8,mgp=c(3,.4,0),tcl=-.3)
-mtext(side=c(1,2,1),cex=cex.labs,text=c('Frequency','dB','Periodogram'),line=c(1,1.1,2.1))
-for (i in 1:nf) {segments(freq[i],min.per,freq[i],db[i])
-                }   
-#
-#
-# Parzen Window
-#
-#
 #
 if (trunc == 0) {M=floor(2*sqrt(n))}
                 else {M=trunc}
@@ -121,16 +103,55 @@ pzgram[i]=aut[1]*weight[1]+2*sum(aut[-1]*weight[-1]*cosvector)
 }
 dbz=10*log10(pzgram)
 plot(freq,dbz,type='l',xaxt='n',yaxt='n',cex=0.5,pch=16,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='')
-axis(side=1,cex.axis=.8,mgp=c(3,0.15,0),tcl=-.3);
-axis(side=2,las=1,cex.axis=.8,mgp=c(3,.4,0),tcl=-.3)
-mtext(side=c(1,2,1),cex=cex.labs,text=c('Frequency','dB','Parzen Window'),line=c(1,1.1,2.1))
+if(periodogram==FALSE) {axis(side=1,cex.axis=1.4,mgp=c(3,0.45,0),tcl=-.3)};
+if(periodogram==TRUE) {axis(side=1,cex.axis=1.2,mgp=c(3,0.45,0),tcl=-.3)};
+if(periodogram==FALSE) {axis(side=2,las=1,cex.axis=1.4,mgp=c(3,.45,0),tcl=-.3)}
+if(periodogram==TRUE) {axis(side=2,las=1,cex.axis=1.2,mgp=c(3,.45,0),tcl=-.3)}
+mtext(side=c(1,2,1),cex=cex.labs,text=c('Frequency','dB','Parzen Window'),line=c(1.7,1.8,3))
 #               }
 #
 #
+if(periodogram == TRUE) {
+# PLOT PERIODOGRAM
 #
-out1=list(autplt=autplt,freq=freq,db=db,dbz=dbz)
+#
+  freq=(1:floor(n/2))/n
+  nf=length(freq)
+  pgram=rep(0,nf)
+  for (i in 1:nf)
+  {
+      cosvector=cos(2*pi*freq[i]*(1:(n-1)))
+#cat('i, cosvector',i, cosvector,'\n')
+      pgram[i]=aut[1]+2*sum(aut[-1]*cosvector)
+#cat('i, freq[i],pgram[i]',i,freq[i],pgram[i],'\n')
+ }
+#
+#
+#list(freq=freq,pgram=pgram)
+#} 
+#
+db=10*log10(pgram)
+nf=length(db)
+min.per=min(db[1:nf])
+if(n <= 200) {plot(freq,db,type='n',xaxt='n',yaxt='n',cex=0.5,pch=16,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='')}
+if(n > 200) {plot(freq,db,type='l',xaxt='n',yaxt='n',cex=0.5,pch=16,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='')}
+if(periodogram==FALSE) {axis(side=1,cex.axis=1.4,mgp=c(3,0.45,0),tcl=-.3)};
+if(periodogram==TRUE) {axis(side=1,cex.axis=1.2,mgp=c(3,0.45,0),tcl=-.3)};
+if(periodogram==FALSE) {axis(side=2,las=1,cex.axis=1.4,mgp=c(3,.45,0),tcl=-.3)}
+if(periodogram==TRUE) {axis(side=2,las=1,cex.axis=1.2,mgp=c(3,.45,0),tcl=-.3)}
+mtext(side=c(1,2,1),cex=cex.labs,text=c('Frequency','dB','Periodogram'),line=c(1.7,1.8,3))
+for (i in 1:nf) {segments(freq[i],min.per,freq[i],db[i])
+                }   
+}
+#
+#
+#
+#
+if (periodogram == FALSE) {out1=list(xbar=xbar,autplt=autplt,freq=freq,dbz=dbz)}
+if (periodogram == TRUE) {out1=list(xbar=xbar,autplt=autplt,freq=freq,dbz=dbz,db=db)}
 return(out1)                       
 }
 
 #
 #
+

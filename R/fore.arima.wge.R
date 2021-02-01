@@ -1,15 +1,5 @@
-fore.aruma.wge=function(x,phi=0,theta=0,d=0,s=0,lambda=0, n.ahead=5,lastn=FALSE, plot=TRUE,alpha=.05,limits=TRUE)
+fore.arima.wge=function(x,phi=0,theta=0,d=0,s=0, n.ahead=5,lastn=FALSE, plot=TRUE,alpha=.05,limits=TRUE)
 {
-#x=ngen.aruma.wge(n=100,phi=c(0,-.9),d=1,s=4,sn=50)
-#n=100
-#phi=c(.0534,-.9291)
-#theta=0
-#lambda=0
-#d=1
-#s=4
-#plot=TRUE
-#limits=FALSE
-#n.ahead=20
 n=length(x)
 p=length(phi)
 if(phi==0) {p=0
@@ -35,7 +25,7 @@ if(s > 0) {seas=rep(0,s)
 #cat('seas',seas,'\n')
 dlam=length(lambda)
 #cat('lambda',lambda,'\n')
-if(sum(lambda^2)==0) {dlam=0
+if(lambda==0) {dlam=0
             fac4=0}
 if(sum(lambda^2)>0) {fac4=lambda}
 #cat('lambda',lambda,'\n')
@@ -53,10 +43,9 @@ cat('ptot.res=',ptot.res,'\n')
 cat('phitot.res',phitot.res,'\n')
 cat('ptot.fore=',ptot.fore,'\n')
 cat('phitot.fore',phitot.fore,'\n')
-y.arima=x
-lns=length(phitot.res)
-if(lns>0) {y.arma=artrans.wge(x,phi.tr=phitot.res)}
+y.arma=artrans.wge(x,phi.tr=phitot.res)
 #
+
 #BACKCAST RESIDUALS BASED ON FIT TO TRANSFORMED ARMA DATA
 #
 
@@ -101,6 +90,8 @@ if (h<=q) {for(jq in h:q) {xhat[mm+h]=xhat[mm+h]-theta[jq]*resid[mm+h-jq]}}
                     xhat[mm+h]=xhat[mm+h]+mean(x[1:mm])*const}
 #
 #
+
+
 #   Calculate psi weights for forecasts limits
 #
 #
@@ -140,8 +131,8 @@ if(limits==FALSE) {
   else            {maxp=max(x,xhat)
   minp=min(x,xhat)}}
 if(limits==TRUE) {minp=min(x,llplot)
-maxp=max(x,ulplot)}
-
+#maxp=max(x,ulplot)}
+maxp=40000}
 #cat(minp,maxp,'\n')
 numrows <- 1
 numcols <- 1
@@ -150,18 +141,25 @@ valuelab <- ''
 fig.width <- 5
 fig.height <- 2.5
 cex.labs <- c(1.2,1.2,1.2)
+#tiff(filename=filename,width=fig.width,height=fig.height,units='in',compression='none',res=350)
 par(mfrow=c(numrows,numcols),mar=c(9,4,3,2))
 t<-1:n;
 np1=n+1
 np.ahead=mm+n.ahead
 tf<-mm:np.ahead
-if (plot==TRUE) {plot(t,x,type='o',xaxt='n',yaxt='n',cex=.8,pch=16,cex.lab=1,cex.axis=1,lwd=.75,xlab='',ylab='',xlim=c(1,maxh),ylim=c(minp,maxp))
+if (plot==TRUE) {
+fig.width <- 5
+fig.height <- 2.5
+cex.labs <- c(1.2,1.2,1.2)
+#tiff(filename=filename,width=fig.width,height=fig.height,units='in',compression='none',res=350)
+par(mfrow=c(numrows,numcols),mar=c(9,4,3,2))
+plot(t,x,type='o',xaxt='n',yaxt='n',cex=.8,pch=16,cex.lab=1,cex.axis=1,lwd=1,xlab='',ylab='',xlim=c(1,maxh),ylim=c(minp,maxp),col=1)
 axis(side=1,cex.axis=1.1,mgp=c(3,0.15,0),tcl=-.3);
 axis(side=2,las=1,cex.axis=1.1,mgp=c(3,.4,0),tcl=-.3)
 mtext(side=c(1,2,1),cex=cex.labs,text=c(timelab,valuelab,""),line=c(1.2,2.1,1.8))
-points(tf,fplot,type='o',lty=1,cex=.8,lwd=.5,pch=1);
-if(limits==TRUE) {points(tf,ulplot,type='l',lty=3,cex=0.6,lwd=.75,pch=1)
-points(tf,llplot,type='l',lty=3,cex=0.6,lwd=.75,pch=18) }
+points(tf,fplot,type='o',lty=1,cex=.6,lwd=1,pch=1,col=2);
+if(limits==TRUE) {points(tf,ulplot,type='l',lty=3,cex=0.6,lwd=.75,pch=1,col=4)
+points(tf,llplot,type='l',lty=3,cex=0.6,lwd=.75,pch=1,col=4)}
     }
 np1=mm+1
 nap1=n.ahead+1

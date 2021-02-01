@@ -106,8 +106,8 @@ axis(side=1,cex.axis=.8,mgp=c(3,0.15,0),tcl=-.3);
 axis(side=2,las=1,cex.axis=.8,mgp=c(3,.4,0),tcl=-.3)
 mtext(side=c(1,2,1),cex=cex.labs,text=c('Lag','','Sample Autocorrelations'),line=c(1,1.1,2.1))   
                               }
-return(y) 
 }
+return(y) 
 }
 #
 #

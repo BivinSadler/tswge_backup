@@ -5,7 +5,7 @@
 #   For a given ARMA(p,q) model,  this function generates a realization, calculates the true autocorrelations 
 #   and spectral density (dB) and plots the three graphs (similar to Figure 3.10 in the ATSA text
 #
-plotts.true.wge<-function(n=100,phi=0,theta=0,lag.max=25,vara=1)
+plotts.true.wge<-function(n=100,phi=0,theta=0,lag.max=25,mu=0,vara=1,sn=0)
 {
 #
 #  n is the realization length  (x(t), t=1, ..., n. (Default n=100)  NOTE: The generated model is based on zero mean. To generate a realization
@@ -14,6 +14,8 @@ plotts.true.wge<-function(n=100,phi=0,theta=0,lag.max=25,vara=1)
 #  theta is a vector of MA parameters (using signs as in ATSA text)  
 #  lag.max is the maximum lag at which the autocorrelations and autocovariances will be calculated
 #  vara is the white noise variance
+# if sn=0 then produces random results, otherwise, uses seed >0
+  if (sn > 0) {set.seed(sn)}
 # 
 #  NOTEs:
 #    (1) This function finds p and q as the length of phi and theta respectively. If either phi=0 or theta=0 (default) 
@@ -74,15 +76,28 @@ cex.labs <- c(.9,.8,.9)
 #cat('ar, ma',ar,ma,'\n')
 ar=phi
 ma=-theta
-if((p>0) & (q>0)) {data=arima.sim(n,model=list(ar=ar,ma=ma))}
-if((p==0) & (q>0)) {data=arima.sim(n,model=list(ma=ma))}
-if((p>0) & (q==0)) {data=arima.sim(n,model=list(ar=ar))}
-if((p==0) & (q==0)) {data=arima.sim(n)}
-t1=1:length(data)
-plot(t1,data,type='l',xaxt='n',yaxt='n',cex=0.75,pch=15,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='')
-axis(side=1,cex.axis=.85,mgp=c(3,0.15,0),tcl=-.3);
-axis(side=2,las=1,cex.axis=.85,mgp=c(3,.4,0),tcl=-.3)
-mtext(side=c(1,2,1),cex=cex.labs,text=c('Time','','(a) Realization'),line=c(1.25,1.4,2.5),font=c(1,1,1))
+spin=2000
+ngen=n+spin
+if((p>0) & (q>0)) {tsdata=arima.sim(ngen,model=list(ar=ar,ma=ma),sd=sd)}
+if((p==0) & (q>0)) {tsdata=arima.sim(ngen,model=list(ma=ma),sd=sd)}
+if((p>0) & (q==0)) {tsdata=arima.sim(ngen,model=list(ar=ar),sd=sd)}
+if((p==0) & (q==0)) {tsdata=rnorm(ngen,mean=mu,sd=sd)}
+y=as.numeric(tsdata)
+d1=1
+ndspin=n+spin
+xfull=rep(0,ndspin)
+x=rep(0,ndspin)
+for(i in d1:ndspin) {xfull[i]=y[i]}
+for (ii in 1:n) {x[ii]=xfull[ii+spin]+mu}
+t1=1:n
+#
+# Plot Realization
+#
+data=x[1:n]
+plot(t1,data,type='l',xaxt='n',yaxt='n',cex=2,pch=15,cex.lab=.9,cex.axis=1.2,lwd=1,xlab='',ylab='')
+axis(side=1,cex.axis=1.2,mgp=c(3,0.15,0),tcl=-.3);
+axis(side=2,las=1,cex.axis=1.2,mgp=c(3,.4,0),tcl=-.3)
+mtext(side=c(1,2,1),cex=cex.labs,text=c('Time','','(a) Realization'),line=c(1.6,1.4,2.9),font=c(1,1,1))
 #
 #
 #  Calculate True Autocorrelations
@@ -239,22 +254,22 @@ for (fi in 1:251) {
 # plot true autocorrelations
 #
 k=0:lag.max
-plot(k,aut1,type='h',xaxt='n',yaxt='n',cex=0.4,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='',ylim=c(-1,1))
+plot(k,aut1,type='h',xaxt='n',yaxt='n',cex=2,cex.lab=.9,cex.axis=1.2,lwd=1,xlab='',ylab='',ylim=c(-1,1))
 abline(h=0)
-axis(side=1,cex.axis=.9,mgp=c(3,0.15,0),tcl=-.3);
-axis(side=2,las=1,cex.axis=.9,mgp=c(3,.4,0),tcl=-.3)
-mtext(side=c(1,2,1),cex=cex.labs,text=c('Lag','','(b) True Autocorrelations'),line=c(1,1.1,2.1))
+axis(side=1,cex.axis=1.2,mgp=c(3,0.3,0),tcl=-.3);
+axis(side=2,las=1,cex.axis=1.2,mgp=c(3,.4,0),tcl=-.3)
+mtext(side=c(1,2,1),cex=cex.labs,text=c('Lag','Autocorrelations','(b) True Autocorrelations'),line=c(1.6,2.1,2.9))
 #
 # plot true spectral density
 #
 fii=1:251
 f=(fii-1)/500
-plot(f,spec,type='l',xaxt='n',yaxt='n',cex=0.4,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='')
-axis(side=1,cex.axis=.9,mgp=c(3,0.15,0),tcl=-.3);
-axis(side=2,las=1,cex.axis=.9,mgp=c(3,.4,0),tcl=-.3)
-mtext(side=c(1,2,1),cex=cex.labs,text=c('Frequency','dB','(c) True Spectral Density'),line=c(1,1.1,2.1))
+plot(f,spec,type='l',xaxt='n',yaxt='n',cex=2,cex.lab=.9,cex.axis=1.2,lwd=1,xlab='',ylab='')
+axis(side=1,cex.axis=1.2,mgp=c(3,0.15,0),tcl=-.3);
+axis(side=2,las=1,cex.axis=1.2,mgp=c(3,.4,0),tcl=-.3)
+mtext(side=c(1,2,1),cex=cex.labs,text=c('Frequency','dB','(c) True Spectral Density'),line=c(1.6,1.1,2.9))
 #
-out1=list(data=data,aut1=aut1,acv=g,spec=spec)
+out1=list(data=data,aut1=aut1,acv=g,spec=spec,sd=sd)
 return(out1)
 }
 

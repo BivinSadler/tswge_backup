@@ -1,4 +1,4 @@
-fore.sigplusnoise.wge=function(x,linear=TRUE,freq=0,max.p=5,n.ahead=10,lastn=FALSE,plot=TRUE,limits=TRUE)
+nfore.sigplusnoise.wge=function(x,linear=TRUE,type='mle',freq=0,max.p=5,n.ahead=10,lastn=FALSE,plot=TRUE,limits=TRUE)
 {
 # if linear=TRUE then a linear trend is fit to the data and the residuals from the trend are fitted usig an AR model
 # if linear=FALSE then a cosine function is fit to the data and the residuals from the cosine are fitted usig an AR model
@@ -17,13 +17,13 @@ tl=1:n
 #
 #
 if(linear=='TRUE') {
-ftl=lm(x~tl)
+ftl=slr.wge(x)
 for(t in 1:n){
-xar[t]=x[t]-ftl$coefficients[1]-t*ftl$coefficients[2]
+xar[t]=x[t]-ftl$b0hat-t*ftl$b1hat
 xd[t]=x[t]-xar[t]
                    }
 #
-if(lastn=='FALSE') {for(t in np1:npn.ahead) {xd[t]=ftl$coefficients[1]+t*ftl$coefficients[2]}}
+if(lastn=='FALSE') {for(t in np1:npn.ahead) {xd[t]=ftl$b0hat+t*ftl$b1hat}}
 }
 #
 if(linear=='FALSE') {
@@ -50,10 +50,11 @@ xd[t]=ftc$coefficients[1]+ftc$coefficients[2]*x1[t]+ftc$coefficients[3]*x2[t]
 }
 }
 }
-order=aic.wge(xar,p=0:max.p,q=0:0)
+order=aic.wge(xar[1:n],p=0:max.p,q=0:0)
 p=order$p
 phi=0
-if(p > 0) {w=est.ar.wge(xar,p=p,type='burg')
+type.est=type
+if(p > 0) {w=est.ar.wge(xar[1:n],p=p,type=type.est)
 phi=w$phi
 }
 #
@@ -66,12 +67,14 @@ if (p > 0) {for(jp in 1:p) {const=const-phi[jp]}}
 #Calculating Residuals
 #
 #
+resid=backcast.wge(xar[1:n],phi,theta=0,n.back=50)
+
 p1=p+1
 xbar=mean(xar)
 maconst=const*xbar
-for (i in p1:n) {resid[i]=xar[i]
-   if ( p > 0) {for (jp in 1:p) {resid[i]=resid[i]-phi[jp]*xar[i-jp]}
-                   resid[i]=resid[i]-maconst}}
+#for (i in p1:n) {resid[i]=xar[i]
+#   if ( p > 0) {for (jp in 1:p) {resid[i]=resid[i]-phi[jp]*xar[i-jp]}
+#                   resid[i]=resid[i]-maconst}}
 #
 # Calculating Forecasts for AR noise
 #
@@ -109,8 +112,8 @@ wnv=0
 xisq=rep(0,n.ahead)
 se=rep(0,n.ahead)
 se0=1
-for (i in p1:n) {wnv=wnv+resid[i]**2}
-wnv=wnv/(n-p)
+for (i in 1:n) {wnv=wnv+resid[i]**2}
+wnv=wnv/n
 xisq[1]=1
 for (i in 2:n.ahead) {xisq[i]=xisq[i-1]+xi[i-1]^2}
 for (i in 1:n.ahead) {se[i]=sqrt(wnv*xisq[i])}
@@ -171,15 +174,13 @@ f=fplot[2:nap1]
 ll=llplot[2:nap1]
 ul=ulplot[2:nap1]
 if (linear==TRUE){
-b0=ftl$coefficients[1]
-b1=ftl$coefficients[1]
-out1=list(b0=ftl$coefficients,sig=xd,z=xar,phi.z=phi,f=f,ll=ll,ul=ul,resid=resid,wnv=wnv,se=se,xi=xi)
+out1=list(b0hat=ftl$b0hat,b1hat=ftl$b1hat,sig=xd,z=xar[1:n],phi.z=phi,f=f,ll=ll,ul=ul,resid=resid,wnv=wnv,se=se,xi=xi)
 return(out1)}
 if (linear==FALSE){
 b0=ftc$coefficients[1]
 b1=ftc$coefficients[1]
 b2=ftc$coefficients[3]
-out1=list(b=ftc$coefficients,sig=xd,z=xar,phi.z=phi,f=f,ll=ll,ul=ul,resid=resid,wnv=wnv,se=se,xi=xi)
+out1=list(b=ftc$coefficients,sig=xd,z=xar[1:n],phi.z=phi,f=f,ll=ll,ul=ul,resid=resid,wnv=wnv,se=se,xi=xi)
 return(out1)}
 }
 

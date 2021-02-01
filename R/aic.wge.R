@@ -1,6 +1,7 @@
 aic.wge=function (x, p = 0:5, q = 0:2, type = "aic") 
 {
-    x = x - mean(x)
+   xbar=mean(x)
+   x = x - mean(x)
     aic = 99999
     bic = 99999
     aicc = 99999
@@ -75,17 +76,17 @@ if(is.list(b)==TRUE){
 }
     if (type == "aic") {
         out1 = list(type = type, value = aic, p = j_aic, q = k_aic, 
-            phi = phi_aic, theta = theta_aic, vara = avar_aic)
+            phi = phi_aic, theta = theta_aic, xbar=xbar,vara = avar_aic)
         return(out1)
     }
     if (type == "aicc") {
         out1 = list(type = type, value = aicc, p = j_aicc, q = k_aicc, 
-            phi = phi_aicc, theta = theta_aicc, vara = avar_aicc)
+            phi = phi_aicc, theta = theta_aicc, xbar=xbar,vara = avar_aicc)
         return(out1)
     }
     if (type == "bic") {
         out1 = list(type = type, value = bic, p = j_bic, q = k_bic, 
-            phi = phi_bic, theta = theta_bic, vara = avar_bic)
+            phi = phi_bic, theta = theta_bic, xbar=xbar,vara = avar_bic)
         return(out1)
     }
 }

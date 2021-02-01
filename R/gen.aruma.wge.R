@@ -72,7 +72,7 @@ ngen=n+dlams+spin
 if((p>0) & (q>0)) {tsdata=arima.sim(ngen,model=list(order=c(p,d,q),ar=ar,ma=ma),sd=sd)}
 if((p==0) & (q>0)) {tsdata=arima.sim(ngen,model=list(order=c(p,d,q),ma=ma),sd=sd)}
 if((p>0) & (q==0)) {tsdata=arima.sim(ngen,model=list(order=c(p,d,q),ar=ar),sd=sd)}
-if((p==0) & (q==0)) {tsdata=arima.sim(ngen,model=list(order=c(0,d,0),sd=sd))}
+if((p==0) & (q==0)) {tsdata=arima.sim(ngen,model=list(order=c(0,d,0)),sd=sd)}
 #
 tsdata
 #
