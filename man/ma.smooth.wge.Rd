@@ -11,7 +11,8 @@
 \value{
   \item{x}{Original data}
   \item{smooth}{Data after application of centered average filter.l}
-  \item{order}{Order (odd or even integer) of the smoother)}
+  \item{order}{Order (odd or even integer) of the smoother}
+  }
 \references{"Practical Time Series Analysis with R" by Woodward, Sadler, and Robertson"}
 \author{Wayne Woodward}
 \examples{data(wtcrude)
