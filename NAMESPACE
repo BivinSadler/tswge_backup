@@ -6,3 +6,5 @@ exportPattern("^[[:alpha:]]+")
               "ar.yw", "arima", "arima.sim", "coef", "fft", "lm",
               "na.pass", "pchisq", "predict", "rnorm", "spec.pgram",
               "vcov")
+   import("tidyverse")
+   import("zoo")
