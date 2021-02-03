@@ -1,5 +1,5 @@
 gen.arma.wge <-
-function(n,phi=0,theta=0,vara=1,plot=TRUE,sn=0)
+function(n,phi=0,theta=0,mu=0,vara=1,plot=TRUE,sn=0)
 {
 #
 #  n is the realization length  (x(t), t=1, ..., n  NOTE: The generated model is based on zero mean. To generate a realization
@@ -49,16 +49,27 @@ if(all(ma==0)) {ma=NA
 d=0
 d1=1+d
 nd=n+d
+spin=2000
+ngen=n+spin
 #cat('n,p,d,q,ar,ma',n,p,d,q,ar,ma,'\n')
 #data=arima.sim(n,model=list(order=c(p,d,q),ar=ar,ma=ma),sd=sd)
 #data=arima.sim(n,model=list(ar=ar,ma=ma),sd=sd)
-if((p>0) & (q>0)) {tsdata=arima.sim(n,model=list(order=c(p,d,q),ar=ar,ma=ma),sd=sd)}
-if((p==0) & (q>0)) {tsdata=arima.sim(n,model=list(order=c(p,d,q),ma=ma),sd=sd)}
-if((p>0) & (q==0)) {tsdata=arima.sim(n,model=list(order=c(p,d,q),ar=ar),sd=sd)}
-if((p==0) & (q==0)) {tsdata=rnorm(n,mean=0,sd=sd)}
+if((p>0) & (q>0)) {tsdata=arima.sim(ngen,model=list(order=c(p,d,q),ar=ar,ma=ma),sd=sd)}
+if((p==0) & (q>0)) {tsdata=arima.sim(ngen,model=list(order=c(p,d,q),ma=ma),sd=sd)}
+if((p>0) & (q==0)) {tsdata=arima.sim(ngen,model=list(order=c(p,d,q),ar=ar),sd=sd)}
+if((p==0) & (q==0)) {tsdata=rnorm(ngen,mean=0,sd=sd)}
 #list(order = c(1,1,0), ar = 0.7), n = 200)
+y=as.numeric(tsdata)
+d1=d+1
+nd=n+d+1
+ndspin=n+spin
+xfull=rep(0,ndspin)
+x=rep(0,ndspin)
+for(i in d1:ndspin) {xfull[i]=y[i]}
+for(ii in 1:n) {x[ii]=xfull[ii+spin]}
 #
 #   Plot Realization
+for(ii in 1:n) {x[ii]=x[ii]+mu}
 #
 if(plot=='TRUE') {
 cex.labs <- c(.9,.8,.9)
@@ -67,11 +78,12 @@ numrows <- 1
 numcols <- 1
 par(mfrow=c(numrows,numcols),mar=c(3.8,2.5,1,1))
 t=1:n
-plot(t,tsdata[d1:nd],type='l',xaxt='n',yaxt='n',cex=0.5,pch=16,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='')
+plot(t,x[1:n],type='l',xaxt='n',yaxt='n',cex=0.5,pch=16,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='')
 axis(side=1,cex.axis=.9,mgp=c(3,0.15,0),tcl=-.3);
 axis(side=2,las=1,cex.axis=.9,mgp=c(3,.4,0),tcl=-.3)
 mtext(side=c(1,2,1),cex=cex.labs,text=c('Time','','Realization'),line=c(1,1.1,2.1))
               }
-tsdata=as.numeric(tsdata)
-return(tsdata)         
+xbar=mean(x[1:n])
+varx=var(x[1:n])
+return(x[1:n])     
 }
