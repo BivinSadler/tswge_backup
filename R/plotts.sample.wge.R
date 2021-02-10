@@ -25,13 +25,13 @@ plotts.sample.wge=function(x,lag.max=25,trunc=0,arlimits=FALSE,periodogram=FALSE
 xbar=mean(x)
 cex.labs=c(1,1,1)
 if(periodogram == TRUE) {
-dev.new(width=8,height=6.5)
+#dev.new(width=8,height=6.5)
 numrows=2
 numcols=2
 par(mfrow=c(numrows,numcols),mar=c(4.3,3.5,1.6,1))}
 #
 if(periodogram == FALSE) {
-dev.new(width=11,height=3)
+#dev.new(width=11,height=3)
 numrows=1
 numcols=3
 par(mfrow=c(numrows,numcols),mar=c(4.3,3.5,1.6,1))}
