@@ -3,7 +3,7 @@ plotts.wge = function (x,Presentation = 0,ylab = "",xlab = "Time", title = "Real
   cex.labs <- c(0.9, 0.8, 0.9)
   numrows <- 1
   numcols <- 1
-  par(mfrow = c(numrows, numcols), mar = c(3.8, 2.5, 1, 1))
+  #par(mfrow = c(numrows, numcols), mar = c(3.8, 2.5, 1, 1))
   n = length(x)
   t = 1:n
   if (Presentation == 0) {
