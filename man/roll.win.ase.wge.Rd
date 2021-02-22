@@ -7,15 +7,20 @@ roll.win.ase.wge = function(series, trainingSize, horizon = 1, s = 0, d = 0, phi
 }
 \arguments{
   \item{series}{The data}
-  \item{d}{Order of the difference}
-  \item{s}{Order of the seasonal difference, default=1}
-  \item{trainingSize}{Size of the data used to generage the forecast.}
   \item{horizon}{The number of observations ahead to be forecasted.}
-  \item{phi}{Vector of AR coefficients}
-  \item{theta}{Vector of MA coefficients}
+  \item{s}{Order of the seasonal difference, default=1}
+  \item{d}{Order of the difference}
+  \item{phis}{Vector of AR coefficients}
+  \item{thetas}{Vector of MA coefficients}
 }
 \value
-  \item{rwASE} the average of the individual ASEs of each window.
+  \item{rwASE} {The average of the individual ASEs of each window}
+  \item{numwindows} {The number of windows}
+  \item{horizon}{The number of observations ahead to be forecasted.}
+  \item{s}{Order of the seasonal difference, default=1}
+  \item{d}{Order of the difference}
+  \item{phis}{Vector of AR coefficients}
+  \item{thetas}{Vector of MA coefficients}
   
 \references{"The new book."}
 \author{Bivin Sadler}
