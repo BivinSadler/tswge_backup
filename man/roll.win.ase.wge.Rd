@@ -13,7 +13,7 @@ roll.win.ase.wge = function(series, trainingSize, horizon = 1, s = 0, d = 0, phi
   \item{phis}{Vector of AR coefficients}
   \item{thetas}{Vector of MA coefficients}
 }
-\value
+\value{
   \item{rwASE} {The average of the individual ASEs of each window}
   \item{numwindows} {The number of windows}
   \item{horizon}{The number of observations ahead to be forecasted.}
@@ -21,7 +21,7 @@ roll.win.ase.wge = function(series, trainingSize, horizon = 1, s = 0, d = 0, phi
   \item{d}{Order of the difference}
   \item{phis}{Vector of AR coefficients}
   \item{thetas}{Vector of MA coefficients}
-  
+}
 \references{"The new book."}
 \author{Bivin Sadler}
 
