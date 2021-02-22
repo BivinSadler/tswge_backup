@@ -3,7 +3,7 @@
 \title{Function to Calculate the Rolling Window ASE for Variable Window Sizes}
 \description{This function creates as many "windows" as is possible wiht the data and calculates an ASE for each window.  The resulting "rolling window ASE" is the average of the individual ASEs from each window. Specfically, a "window" is a subset of the data of size (traininSize + horizon)."}
 \usage{
-roll.win.ase.wge = function(series, trainingSize, horizon = 1, s = 0, d = 0, phis = 0, thetas = 0)
+roll.win.ase.wge = function(series, horizon = 1, s = 0, d = 0, phis = 0, thetas = 0)
 }
 \arguments{
   \item{series}{The data}
