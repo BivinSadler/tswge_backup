@@ -10,15 +10,8 @@
 
 
 
-Rolling_Window_ASE = function(series, trainingSize, horizon = 1, s = 0, d = 0, phis = 0, thetas = 0)
+roll.win.ase.wge = function(series, trainingSize, horizon = 1, s = 0, d = 0, phis = 0, thetas = 0)
 {
-  trainingSize = 70
-  horizon = 12
-  ASEHolder = numeric()
-  s = 10
-  d = 0
-  phis = phis
-  thetas = thetas
   
   for( i in 1:(length(series)-(trainingSize + horizon) + 1))
   {
@@ -40,18 +33,3 @@ Rolling_Window_ASE = function(series, trainingSize, horizon = 1, s = 0, d = 0, p
   print(paste("The Rolling Window ASE is: ",WindowedASE))
   return(WindowedASE)
 }
-
-
-
-fit = lm(Height~Sport, data = SportHeights)
-summary(fit)
-leastsquares = lsmeans(fit, "Sport")
-# Difference of Sums
-Contrast = list(BasketballVersusAverageOfFootballTennisAndSwimming = c(3,-1,0,-1,-1))
-contrast(leastsquares,Contrast)
-#Difference of Averages (Contrast weights add to 1.)
-Contrast = list(BasketballVersusAverageOfFootballTennisAndSwimming = c(1,-1/3,0,-1/3,-1/3))
-contrast(leastsquares,Contrast)
-#Differences of Averages (Conrast Weights do not add to 1.)
-Contrast = list(BasketballVersusAverageOfFootballTennisAndSwimming = c(1,.33,0,.33,.33))
-contrast(leastsquares,Contrast)
