@@ -14,8 +14,8 @@ roll.win.ase.wge = function(series, trainingSize, horizon = 1, s = 0, d = 0, phi
   \item{thetas}{Vector of MA coefficients}
 }
 \value{
-  \item{rwASE} {The average of the individual ASEs of each window}
-  \item{numwindows} {The number of windows}
+  \item{rwASE}{The average of the individual ASEs of each window}
+  \item{numwindows}{The number of windows}
   \item{horizon}{The number of observations ahead to be forecasted.}
   \item{s}{Order of the seasonal difference, default=1}
   \item{d}{Order of the difference}
