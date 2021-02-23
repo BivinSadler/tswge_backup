@@ -6,6 +6,10 @@
 # phis = order of the stationary AR term
 # thetas = order of the invertible MA term
 
+# It simply takes the given horizon and the model in the form of s,d,phis and 
+# thetas and figures out how many windows it can create in the data (series) and then calculates the ASE for each window.  
+#The output is the average off all the ASEs from each individual window.  
+
 roll.win.ase.wge = function(series, horizon = 1, s = 0, d = 0, phis = 0, thetas = 0)
 {
   
