@@ -27,9 +27,11 @@ max.f=max(x.filt[1:n])
 min.f=min(x.filt[1:n])
 max.both=max(max.x,max.f)
 min.both=min(min.x,min.f)
-par(mfrow=c(2,1))
+par(mfrow=c(2,1),mar=c(3,2.5,1,.5))
 cex.labs <- c(.8,.7,.8)
 t=1:n
+fig.width=6
+fig.height=3
 #
 plot(t,x,type='l',xaxt='n',yaxt='n',cex=0.4,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='',ylim=c(min.both,max.both))
 axis(side=1,cex.axis=.8,mgp=c(3,0.15,0),tcl=-.3);
