@@ -7,9 +7,6 @@
 #Example: UnitCircle(.3,-.7)
 
 
-install.packages("plotrix") # required for the circle 
-library(plotrix)
-
 unit.circle.wge = function(real = 0, imaginary = 0)
 {
 
