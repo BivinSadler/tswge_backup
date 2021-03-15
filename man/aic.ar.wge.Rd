@@ -7,7 +7,7 @@
   \item{x}{Realization to be analyzed}
   \item{p}{Range of p values to be considered}
   \item{type}{Type of model identification criterion: aic, aicc, or bic}
-  \item{method{Method used for estimation: MLE, Burg, or YW}
+  \item{method}{Method used for estimation: MLE, Burg, or YW}
 }
 \value{
   \item{type}{Criterion used: aic (default), aicc, or bic}
