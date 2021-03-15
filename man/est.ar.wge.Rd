@@ -20,7 +20,7 @@
   \item{aicc}{AICC for estimated model}
   \item{bic}{BIC for estimated model}
 }
-\details{The 'type' arument is added for backwards compatabililty and if specified will replace the value specified in the method argument.}
+\details{The 'type' arument is added for backwards compatabililty and if specified will replace the value specified in the 'method' argument.}
 \references{"Applied Time Series Analysis with R, 2nd edition" by Woodward, Gray, and Elliott}
 \author{Wayne Woodward}
 \examples{data(fig6.1nf)
