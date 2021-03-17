@@ -6,7 +6,7 @@ x = x - mean(x)
     bic = 99999
     aicc = 99999
     type1=type
-    method=method1
+    method1=method
     for (j in p)  {
         w = est.ar.wge(x,p=j,type=type1,method=method1,factor=FALSE)
                    phi = w$phi
