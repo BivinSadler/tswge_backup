@@ -1,14 +1,15 @@
 aic.ar.wge=function (x, p = 1:5, type = "aic",method='mle') 
 {
 k=0    
+xbar=mean(x)
 x = x - mean(x)
     aic = 99999
     bic = 99999
     aicc = 99999
-    type1=type
     method1=method
-    for (j in p)  {
-        w = est.ar.wge(x,p=j,type=type1,method=method1,factor=FALSE)
+    type1=type    
+for (j in p)  {if(j>0)
+        w = est.ar.wge(x,p=j,method=method1,factor=FALSE)
                    phi = w$phi
    
           res = backcast.wge(x, phi = phi,theta=0, n.back = 50)
@@ -17,7 +18,7 @@ x = x - mean(x)
         for (i in 1:n) {
             avar = avar + res[i] * res[i]
         }
-        avar = avar/n
+       avar = avar/n
         tempaic = log(avar) + 2 * (j + k + 1)/n
         tempbic = log(avar) + (j + k + 1) * log(n)/n
         tempaicc = log(avar) + (n + j + k + 1)/(n - j - k - 3)
@@ -47,18 +48,18 @@ x = x - mean(x)
         }
     }
     if (type1 == "aic") {
-        out1 = list(type = type1, value = aic, p = j_aic,  
-            phi = phi_aic,  vara = avar_aic)
+        out1 = list(type = type1, method=method1,value = aic, p = j_aic,  
+            phi = phi_aic,  xbar=xbar,vara = avar_aic)
         return(out1)
     }
     if (type1 == "aicc") {
-        out1 = list(type = type1, value = aicc, p = j_aicc,  
-            phi = phi_aicc, vara = avar_aicc)
+        out1 = list(type = type1, method=method1,value = aicc, p = j_aicc,  
+            phi = phi_aicc, xbar=xbar,vara = avar_aicc)
         return(out1)
     }
     if (type1 == "bic") {
-        out1 = list(type = type1, value = bic, p = j_bic,  
-            phi = phi_bic, vara = avar_bic)
+        out1 = list(type = type1, method=method1,value = bic, p = j_bic,  
+            phi = phi_bic, xbar=xbar,vara = avar_bic)
         return(out1)
     }
 }
