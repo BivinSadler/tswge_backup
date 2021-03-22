@@ -1,5 +1,5 @@
-\name{dallastemp2}
-\alias{dallastemp2}
+\name{dallastemp}
+\alias{dallastemp}
 \docType{data}
 \title{Average Montly Temperature in Dallas from 1898 - 2020}
 \description{Average Montly Temperature in Dallas from 1898 - 2020}
