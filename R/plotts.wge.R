@@ -48,3 +48,4 @@ plotts.wge = function (x,Presentation = 0,ylab = "",xlab = "Time", title = "Real
   }
 }
 
+# Good reference URL for TS plotting in ggplot2: https://www.r-graph-gallery.com/279-plotting-time-series-with-ggplot2.html
