@@ -1,4 +1,4 @@
-plotts.wge = function (x,Presentation = 0,ylab = "",xlab = "Time", title = "Realization", col = "black") 
+plotts.wge = function (x,Presentation = 0,ylab = "",xlab = "Time", title = "Realization", col = "black", text_size= 12) 
 {
   cex.labs <- c(0.9, 0.8, 0.9)
   numrows <- 1
@@ -37,13 +37,13 @@ plotts.wge = function (x,Presentation = 0,ylab = "",xlab = "Time", title = "Real
       df = data.frame(x = t, y = x)
       df %>% ggplot(aes(x = x, y = y)) + geom_point() + 
         geom_line(color = col) + ggtitle(title) + xlab(xlab) + 
-        ylab(ylab)
+        ylab(ylab) + theme(axis.text=element_text(size=text_size))
     }
     else if (class(x) == "ts") {
       df = data.frame(x = zoo::as.yearmon(time(x)), y = x)
       df %>% ggplot(aes(x = x, y = y)) + geom_point() + 
         geom_line(color = col) + ggtitle(title) + xlab(xlab) + 
-        ylab(ylab)
+        ylab(ylab) + theme(axis.text=element_text(size=text_size))
     }
   }
 }
