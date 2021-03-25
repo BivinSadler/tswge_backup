@@ -21,5 +21,5 @@ gen.sigplusnoise.wge=function (n, b0 = 0, b1 = 0, coef = c(0, 0), freq = c(0, 0)
     }
     return(x)
 }
-
+#
 
