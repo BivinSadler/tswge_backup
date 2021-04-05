@@ -120,8 +120,20 @@ points(tf,llplot,type='l',lty=3,cex=0.6,lwd=.75,pch=1,col=4)
 np1=n+1
 nap1=n.ahead+1
 f=fplot[2:nap1]
+# Calculate RMSE and MAD
+if(lastn==TRUE){
+t.start=n-n.ahead
+sum.rmse=0
+sum.mad=0
+for(i in 1:n.ahead) {sum.rmse=sum.rmse+(f[i]-x[t.start+i])^2
+sum.mad=sum.mad+abs(f[i]-x[t.start+i])}
+mse=sum.rmse/n.ahead
+rmse=sqrt(mse)
+mad=sum.mad/n.ahead
+}
 ll=llplot[2:nap1]
 ul=ulplot[2:nap1]
-out1=list(f=f,ll=ll,ul=ul,resid=resid,wnv=wnv,xbar=xbar,se=se,psi=xi)
+if(lastn==TRUE){out1=list(f=f,ll=ll,ul=ul,resid=resid,wnv=wnv,xbar=xbar,se=se,psi=xi,rmse=rmse,mad=mad)}
+if(lastn==FALSE){out1=list(f=f,ll=ll,ul=ul,resid=resid,wnv=wnv,xbar=xbar,se=se,psi=xi)}
 return(out1)
 }
