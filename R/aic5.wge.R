@@ -1,16 +1,11 @@
 aic5.wge=function(x,p=0:5, q=0:2, type='aic') {
-#pmax=5
-#pmin=0
-#qmax=2
-#qmin=0
 pmax=max(p)
 pmin=min(p)
 qmax=max(q)
 qmin=min(q)
 nr=(pmax-pmin+1)*(qmax-qmin+1)
 aval <- matrix(0, nrow=nr,ncol=3)
-mytype='aic'
-
+mytype=type
 # 
 cat('---------WORKING... PLEASE WAIT...','\n')
 cat('\n')

@@ -204,9 +204,9 @@ for (fi in 1:251) {
 #
 if(plot=='TRUE') {
 cex.labs <- c(.9,.8,.9)
-numrows <- 1
-numcols <- 1
-par(mfrow=c(numrows,numcols),mar=c(3.8,2.5,1,1))
+#numrows <- 1
+#numcols <- 1
+#par(mfrow=c(numrows,numcols),mar=c(3.8,2.5,1,1))
 #
 # plot true spectral density
 #

@@ -5,7 +5,7 @@
 #   For a given ARMA(p,q) model,  this function generates a realization, calculates the true autocorrelations 
 #   and spectral density (dB) and plots the three graphs (similar to Figure 3.10 in the ATSA text
 #
-plotts.true.wge<-function(n=100,phi=0,theta=0,lag.max=25,mu=0,vara=1,sn=0)
+plotts.true.wge<-function(n=100,phi=0,theta=0,lag.max=25,mu=0,vara=1,sn=0, plot.data=TRUE)
 {
 #
 #  n is the realization length  (x(t), t=1, ..., n. (Default n=100)  NOTE: The generated model is based on zero mean. To generate a realization
@@ -61,6 +61,7 @@ a=matrix(rep(0,676), ncol = 26)
 papp=ip-p
 #
 #
+if (plot.data==TRUE) {
 #   Set up for plots
 #
 #
@@ -90,14 +91,7 @@ x=rep(0,ndspin)
 for(i in d1:ndspin) {xfull[i]=y[i]}
 for (ii in 1:n) {x[ii]=xfull[ii+spin]+mu}
 t1=1:n
-#
-# Plot Realization
-#
-data=x[1:n]
-plot(t1,data,type='l',xaxt='n',yaxt='n',cex=2,pch=15,cex.lab=.9,cex.axis=1.2,lwd=1,xlab='',ylab='')
-axis(side=1,cex.axis=1.2,mgp=c(3,0.15,0),tcl=-.3);
-axis(side=2,las=1,cex.axis=1.2,mgp=c(3,.4,0),tcl=-.3)
-mtext(side=c(1,2,1),cex=cex.labs,text=c('Time','','(a) Realization'),line=c(1.6,1.4,2.9),font=c(1,1,1))
+}
 #
 #
 #  Calculate True Autocorrelations
@@ -251,6 +245,22 @@ for (fi in 1:251) {
 #cat('f,num,den,spec(f)',f,num, den, spec[fi],'\n')
                  }
 #
+if(plot.data==TRUE){
+layout(mat=matrix(  c(0,1,1,0,
+                      2,2,3,3)   ,nrow=2,byrow=TRUE))
+par(mar=c(5,2.8,1,1.5))
+cex.labs <- c(.9,.8,.9)
+#
+#
+# Plot Realization
+#
+data=x[1:n]
+plot(t1,data,type='l',xaxt='n',yaxt='n',cex=2,pch=15,cex.lab=.9,cex.axis=1.2,lwd=1,xlab='',ylab='')
+axis(side=1,cex.axis=1.2,mgp=c(3,0.15,0),tcl=-.3);
+axis(side=2,las=1,cex.axis=1.2,mgp=c(3,.4,0),tcl=-.3)
+mtext(side=c(1,2,1),cex=cex.labs,text=c('Time','','(a) Realization'),line=c(1.6,1.4,2.9),font=c(1,1,1))
+
+#
 # plot true autocorrelations
 #
 k=0:lag.max
@@ -269,7 +279,30 @@ axis(side=1,cex.axis=1.2,mgp=c(3,0.15,0),tcl=-.3);
 axis(side=2,las=1,cex.axis=1.2,mgp=c(3,.4,0),tcl=-.3)
 mtext(side=c(1,2,1),cex=cex.labs,text=c('Frequency','dB','(c) True Spectral Density'),line=c(1.6,1.1,2.9))
 #
-out1=list(data=data,aut1=aut1,acv=g,spec=spec,sd=sd)
+}
+if(plot.data==FALSE) {
+par(mfrow=c(1,2),mar=c(4,4.5,2,.5))
+cex.labs <- c(.9,.8,.9)
+# plot true autocorrelations
+#
+k=0:lag.max
+plot(k,aut1,type='h',xaxt='n',yaxt='n',cex=2,cex.lab=.9,cex.axis=1.2,lwd=1,xlab='',ylab='',ylim=c(-1,1))
+abline(h=0)
+axis(side=1,cex.axis=1.2,mgp=c(3,0.3,0),tcl=-.3);
+axis(side=2,las=1,cex.axis=1.2,mgp=c(3,.4,0),tcl=-.3)
+mtext(side=c(1,2,1),cex=cex.labs,text=c('Lag','Autocorrelations','(a) True Autocorrelations'),line=c(1.6,2.1,2.9))
+#
+# plot true spectral density
+#
+fii=1:251
+f=(fii-1)/500
+plot(f,spec,type='l',xaxt='n',yaxt='n',cex=2,cex.lab=.9,cex.axis=1.2,lwd=1,xlab='',ylab='')
+axis(side=1,cex.axis=1.2,mgp=c(3,0.15,0),tcl=-.3);
+axis(side=2,las=1,cex.axis=1.2,mgp=c(3,.4,0),tcl=-.3)
+mtext(side=c(1,2,1),cex=cex.labs,text=c('Frequency','dB','(b) True Spectral Density'),line=c(1.6,1.1,2.9))
+}
+if(plot.data==TRUE) out1=list(data=data,aut1=aut1,acv=g,spec=spec,sd=sd)
+if(plot.data==FALSE) out1=list(aut1=aut1,acv=g,spec=spec,sd=sd)
 return(out1)
 }
 

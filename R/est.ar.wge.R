@@ -1,10 +1,5 @@
-est.ar.wge=function(x,p=2,factor=TRUE,method="mle",type="mle"){
+est.ar.wge=function(x,p=2,factor=TRUE,method="mle"){
 method1=method
-if(type != "mle")
-{
-  method1 = type
-  warning("Warning: The 'type' argument was provided for backwards compatability and provides the same information as the 'method' argument.  If 'type' is specified it will be used as the estimation method.")
-}
 xbar=mean(x)
 x=x-mean(x)
 if (method1=="burg") {arest=ar.burg(x,order.max=p,aic=FALSE)

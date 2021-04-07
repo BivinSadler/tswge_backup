@@ -174,9 +174,9 @@ for (i in 1:lag.maxp1) {aut1[i]=g[i]/gvar
 if(plot=="TRUE") {k=0:lag.max
 cex.labs <- c(.9,.8,.9)
 #
-numrows <- 1
-numcols <- 1
-par(mfrow=c(numrows,numcols),mar=c(3.8,2.5,1,1))
+#numrows <- 1
+#numcols <- 1
+#par(mfrow=c(numrows,numcols),mar=c(3.8,2.5,1,1))
 plot(k,aut1,type='h',xaxt='n',yaxt='n',cex=0.4,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='',ylim=c(-1,1))
 abline(h=0)
 axis(side=1,cex.axis=.8,mgp=c(3,0.15,0),tcl=-.3);
