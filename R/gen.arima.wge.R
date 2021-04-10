@@ -37,9 +37,9 @@ gen.arima.wge<-function(n,phi=0,theta=0,d=0,s=0,mu=0,vara=1,plot='TRUE',sn=0)
 
 cex.labs <- c(.9,.8,.9)
 #
-numrows <- 1
-numcols <- 1
-par(mfrow=c(numrows,numcols),mar=c(3.8,2.5,1,1))
+#numrows <- 1
+#numcols <- 1
+#par(mfrow=c(numrows,numcols),mar=c(3.8,2.5,1,1))
 #
 
 #

@@ -131,18 +131,17 @@ if(limits==FALSE) {
   else            {maxp=max(x,xhat)
   minp=min(x,xhat)}}
 if(limits==TRUE) {minp=min(x,llplot)
-#maxp=max(x,ulplot)}
-maxp=40000}
+maxp=max(x,ulplot)}
+#maxp=40000}
 #cat(minp,maxp,'\n')
-numrows <- 1
-numcols <- 1
+#numrows <- 1
+#numcols <- 1
 timelab <- 'Time'
 valuelab <- ''
 fig.width <- 5
 fig.height <- 2.5
-cex.labs <- c(1.2,1.2,1.2)
-#tiff(filename=filename,width=fig.width,height=fig.height,units='in',compression='none',res=350)
-par(mfrow=c(numrows,numcols),mar=c(9,4,3,2))
+cex.labs <- c(1.2,1.2,1.2) eight,units='in',compression='none',res=350)
+#par(mfrow=c(numrows,numcols),mar=c(9,4,3,2))
 t<-1:n;
 np1=n+1
 np.ahead=mm+n.ahead

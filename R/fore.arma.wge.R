@@ -90,23 +90,23 @@ if(limits==FALSE) {
   min=min(x,xhat)}}
 if(limits==TRUE) {min=min(x,llplot)
 max=max(x,ulplot)}
-numrows <- 1
-numcols <- 1
+#numrows <- 1
+#numcols <- 1
 timelab <- 'Time'
 valuelab <- ''
-fig.width <- 5
-fig.height <- 2.5
+#fig.width <- 5
+#fig.height <- 2.5
 cex.labs <- c(.8,.7,.8)
-par(mfrow=c(numrows,numcols),mar=c(6,2,3,1))
+#par(mfrow=c(numrows,numcols),mar=c(6,2,3,1))
 t<-1:n;
 np1=n+1
 np.ahead=mm+n.ahead
 tf<-mm:np.ahead
 if (plot=='TRUE') {
-fig.width <- 5
-fig.height <- 2.5
+#fig.width <- 5
+#fig.height <- 2.5
 cex.labs <- c(1.2,1.2,1.2)
-par(mfrow=c(numrows,numcols),mar=c(9,4,3,2))
+#par(mfrow=c(numrows,numcols),mar=c(9,4,3,2))
 plot(t,x,type='o',xaxt='n',yaxt='n',cex=.8,pch=16,cex.lab=1,cex.axis=1,lwd=1,xlab='',ylab='',xlim=c(1,maxh),ylim=c(min,max),col=1)
 axis(side=1,cex.axis=1.1,mgp=c(3,0.15,0),tcl=-.3);
 axis(side=2,las=1,cex.axis=1.1,mgp=c(3,.4,0),tcl=-.3)
