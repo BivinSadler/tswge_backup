@@ -59,7 +59,7 @@ if(all(ar==0)) {ar=NA
 if(all(ma==0)) {ma=NA
             q=0}
 
-spin=2000
+spin=20000
 ngen=n+spin+s
 #cat('n,ngen,p,d,q,ar,ma',n,ngen,p,d,q,ar,ma,'\n')
 #data=arima.sim(n,model=list(order=c(p,d,q),ar=ar,ma=ma),sd=sd)
@@ -97,7 +97,8 @@ x[ii]=xfull[ii+spin+d1-1]
 for (ii in 1:n) {x[ii]=x[ii]+mu}
 #cat('x',x[1:n],'\n')
 if(plot=='TRUE')  {t=1:n
-plot(t,x[1:n],type='o',xaxt='n',yaxt='n',cex=0.5,pch=16,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='')
+if(n < 200) plot(t,x[1:n],type='o',xaxt='n',yaxt='n',cex=0.5,pch=16,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='')
+if(n >= 200) plot(t,x[1:n],type='l',xaxt='n',yaxt='n',cex=0.5,pch=16,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='')
 axis(side=1,cex.axis=.9,mgp=c(3,0.15,0),tcl=-.3);
 axis(side=2,las=1,cex.axis=.9,mgp=c(3,.4,0),tcl=-.3)
 mtext(side=c(1,2,1),cex=cex.labs,text=c('Time','','Realization'),line=c(1,1.1,2.1))

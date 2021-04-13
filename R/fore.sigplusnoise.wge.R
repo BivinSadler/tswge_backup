@@ -1,4 +1,4 @@
-nfore.sigplusnoise.wge=function(x,linear=TRUE,type='mle',freq=0,max.p=5,n.ahead=10,lastn=FALSE,plot=TRUE,limits=TRUE)
+nfore.sigplusnoise.wge=function(x,linear=TRUE,method='mle',freq=0,max.p=5,n.ahead=10,lastn=FALSE,plot=TRUE,alpha=.05,limits=TRUE)
 {
 # if linear=TRUE then a linear trend is fit to the data and the residuals from the trend are fitted usig an AR model
 # if linear=FALSE then a cosine function is fit to the data and the residuals from the cosine are fitted usig an AR model
@@ -53,8 +53,8 @@ xd[t]=ftc$coefficients[1]+ftc$coefficients[2]*x1[t]+ftc$coefficients[3]*x2[t]
 order=aic.wge(xar[1:n],p=0:max.p,q=0:0)
 p=order$p
 phi=0
-type.est=type
-if(p > 0) {w=est.ar.wge(xar[1:n],p=p,type=type.est)
+method.est=method
+if(p > 0) {w=est.ar.wge(xar[1:n],p=p,method=method.est)
 phi=w$phi
 }
 #
