@@ -59,7 +59,7 @@ if(all(ar==0)) {ar=NA
 if(all(ma==0)) {ma=NA
             q=0}
 
-spin=20000
+spin=2000
 ngen=n+spin+s
 #cat('n,ngen,p,d,q,ar,ma',n,ngen,p,d,q,ar,ma,'\n')
 #data=arima.sim(n,model=list(order=c(p,d,q),ar=ar,ma=ma),sd=sd)
