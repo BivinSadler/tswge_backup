@@ -8,10 +8,11 @@ x = x - mean(x)
     aicc = 99999
     method1=method
     type1=type    
-for (j in p)  {if(j>0)
+for (j in p)  {if(j==0) {phi=0}
+     else { 
         w = est.ar.wge(x,p=j,method=method1,factor=FALSE)
                    phi = w$phi
-   
+   }
           res = backcast.wge(x, phi = phi,theta=0, n.back = 50)
         avar = 0
         n = length(x)
@@ -63,3 +64,5 @@ for (j in p)  {if(j>0)
         return(out1)
     }
 }
+
+
