@@ -140,7 +140,7 @@ timelab <- 'Time'
 valuelab <- ''
 fig.width <- 5
 fig.height <- 2.5
-cex.labs <- c(1.2,1.2,1.2) eight,units='in',compression='none',res=350)
+cex.labs <- c(1.2,1.2,1.2) #eight,units='in',compression='none',res=350)
 #par(mfrow=c(numrows,numcols),mar=c(9,4,3,2))
 t<-1:n;
 np1=n+1
