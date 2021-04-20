@@ -14,7 +14,7 @@
  \item{z.order}{Order, p, fit to the residuals}
  \item{z.phi}{Coefficients of the AR model fit to the residuals}
  \item{pvalue}{P-value of the CO test for the significance of the slope}
- \item{tco}{Cochrane-Orcutt test statistic.  
+ \item{tco}{Cochrane-Orcutt test statistic.}  
 }
 \references{"Applied Time Series Analysis with R, 2nd edition" by Woodward, Gray, and Elliott}
 \author{Wayne Woodward}
