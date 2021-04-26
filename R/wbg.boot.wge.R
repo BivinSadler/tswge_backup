@@ -7,7 +7,7 @@ xb.t.co.abs=rep(0,399)
 w=co.wge(x,maxp=5)
 x.t.co=w$tco
 x.aic=aic.burg.wge(x,p=1:5)
-for(ii in 1:nb){ xb=ngen.arma.wge(n,phi=x.aic$phi,plot=FALSE)
+for(ii in 1:nb){ xb=gen.arma.wge(n,phi=x.aic$phi,plot=FALSE)
 wb=co.wge(xb,maxp=5)
 xb.t.co[ii]=wb$tco
 #cat(ii,xb.t.co[ii],'ii,xtbco[ii]','\n')
