@@ -3,7 +3,7 @@ method1=method
 if(type != "mle")
 {
   method1 = type
-  warning("Warning: The 'type' argument was provided for backwards compatability and provides the same information as the 'method' argument.  If 'type' is specified it will be used as the estimation method.")
+#  warning("Warning: The 'type' argument was provided for backwards compatability and provides the same information as the 'method' argument.  If 'type' is specified it will be used as the estimation method.")
 }
 xbar=mean(x)
 x=x-mean(x)
