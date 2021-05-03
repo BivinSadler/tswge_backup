@@ -1,4 +1,4 @@
-nfore.sigplusnoise.wge=function(x,linear=TRUE,method='mle',freq=0,max.p=5,n.ahead=10,lastn=FALSE,plot=TRUE,alpha=.05,limits=TRUE)
+fore.sigplusnoise.wge=function(x,linear=TRUE,method='mle',freq=0,max.p=5,n.ahead=10,lastn=FALSE,plot=TRUE,alpha=.05,limits=TRUE)
 {
 # if linear=TRUE then a linear trend is fit to the data and the residuals from the trend are fitted usig an AR model
 # if linear=FALSE then a cosine function is fit to the data and the residuals from the cosine are fitted usig an AR model
