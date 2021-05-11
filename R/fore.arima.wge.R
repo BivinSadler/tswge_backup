@@ -1,17 +1,17 @@
-#
 fore.arima.wge=function(x,phi=0,theta=0,d=0,s=0, n.ahead=5,lastn=FALSE, plot=TRUE,alpha=.05,limits=TRUE)
 {
+lambda=0
 n=length(x)
 p=length(phi)
-phitot.res=0
-ptot.fore=0
+
+
 if(sum(phi^2)==0) {p=0
             fac1=0}
-#else {fac1=phi}
+else {fac1=phi}
 
 #if(phi==0) {p=0
 #            fac1=0}
-if(sum(phi^2)>0) {fac1=phi}
+#if(sum(phi^2)>0) {fac1=phi}
 q=length(theta)
 if(sum(theta^2)==0) {q=0}
 npn.ahead=n+n.ahead
@@ -24,34 +24,32 @@ if (d==1) {diffac=1}
 if (d==2) {diffac=c(2,-1)}
 if (d==3) {diffac=c(3,-3,1)}
 if (d<4) {fac2=diffac} 
-cat('s=',s,'\n') 
-if(s==0) {fac3=0
-seas=0}
+#cat('s=',s,'\n') 
+if(s==0) {fac3=0}
 if(s > 0) {seas=rep(0,s)
            seas[s]=1
            fac3=seas}
-cat('seas',seas,'\n')
-#dlam=length(lambda)
+#cat('seas',seas,'\n')
+dlam=0
 #cat('lambda',lambda,'\n')
-#if(lambda==0) {dlam=0
-#            fac4=0}
-#if(sum(lambda^2)>0) {fac4=lambda}
+if(lambda==0) {dlam=0
+            fac4=0}
+if(sum(lambda^2)>0) {fac4=lambda}
 #cat('lambda',lambda,'\n')
-ptot.fore=p+d+s
-ptot.res=d+s
-prod.fore.tmp=mult.wge(fac1,fac2,fac3)
-prod.res.tmp=mult.wge(fac2,fac3)
+prod.fore.tmp=mult.wge(fac1,fac2,fac3,fac4)
+prod.res.tmp=mult.wge(fac2,fac3,fac4)
 phitot.fore=prod.fore.tmp$model.coef
-if(ptot.res>0) phitot.res=prod.res.tmp$model.coef
-cat('fac1',fac1,'\n')
-cat('fac2',fac2,'\n')
-cat('fac3',fac3,'\n')
-
-cat(d,s,phitot.res,'\n')
-  cat('ptot.res=',ptot.res,'\n')
- cat('phitot.res',phitot.res,'\n')
- cat('ptot.fore=',ptot.fore,'\n')
- cat('phitot.fore=',phitot.fore,'\n')                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+phitot.res=prod.res.tmp$model.coef
+#cat('fac1',fac1,'\n')
+#cat('fac2',fac2,'\n')
+#cat('fac3',fac3,'\n')
+#cat('fac4',fac4,'\n')
+ptot.fore=p+d+s+dlam
+ptot.res=d+s+dlam
+#  cat('ptot.res=',ptot.res,'\n')
+# cat('phitot.res',phitot.res,'\n')
+# cat('ptot.fore=',ptot.fore,'\n')
+# cat('phitot.fore',phitot.fore,'\n')                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 y.arma=artrans.wge(x,phi.tr=phitot.res,plottr=FALSE)
 #
 
