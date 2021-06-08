@@ -22,7 +22,7 @@ roll.win.ase.wge = function(series, horizon = 1, s = 0, d = 0, phis = 0, thetas 
   for( i in 1:numwindows)
   {
     
-    invisible(capture.output(forecasts <- fore.aruma.wge(series[i:(i+(trainingSize-1))],phi = phis, theta = thetas, s = s, d = d,n.ahead = horizon)))
+    invisible(capture.output(forecasts <- fore.arima.wge(series[i:(i+(trainingSize-1))],phi = phis, theta = thetas, s = s, d = d,n.ahead = horizon)))
     
     ASE = mean((series[(trainingSize+i):(trainingSize+ i + (horizon) - 1)] - forecasts$f)^2)
     
