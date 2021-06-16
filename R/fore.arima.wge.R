@@ -65,6 +65,7 @@ y.arma=artrans.wge(x,phi.tr=phitot.res,plottr=FALSE)
 
 res=rep(0,n)
 res
+
 res=backcast.wge(y.arma,phi=phi,theta=theta,n.back=50)
 
 res
@@ -73,6 +74,7 @@ resid=rep(0,n)
 resid
 for (i in 1:ntot.res){resid[ptot.res+i]=res[i]}
 resid
+
 #
 #
 # Calculate Box-Jenkins Forecasts
@@ -114,6 +116,7 @@ xi=psi.weights.wge(phitot.fore,theta,lag.max=n.ahead)
 #
 #
 #
+
 #Setting up for plots
 nap1=n.ahead+1
 fplot=rep(0,nap1)
@@ -131,7 +134,10 @@ resid
 for (i in p1:n) {wnv=wnv+resid[i]**2}
 wnv=wnv/(n-ptot.res)
 xisq[1]=1
-for (i in 2:n.ahead) {xisq[i]=xisq[i-1]+xi[i-1]^2}
+if(n.ahead > 1)
+{
+  for (i in 2:n.ahead) {xisq[i]=xisq[i-1]+xi[i-1]^2}
+}
 for (i in 1:n.ahead) {se[i]=sqrt(wnv*xisq[i])}
 fplot[1]=x[mm]
 for (i in 1:n.ahead) {fplot[i+1]=xhat[mm+i]}
