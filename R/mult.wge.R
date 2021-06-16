@@ -33,7 +33,15 @@ tmpcoef=coef(mfac)
 #
 #remove first element
 #
+# if all factors are 0 then return 0...this can happen if fore.arima.wge is called with d = 0
+if(length(tmpcoef) > 1)
+{
 model.coef=tmpcoef[-1]
+}
+else
+{
+  model.coef = 0
+}
 #
 #
 #correct signs

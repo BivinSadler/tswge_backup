@@ -3,7 +3,7 @@ fore.arima.wge=function(x,phi=0,theta=0,d=0,s=0, n.ahead=5,lastn=FALSE, plot=TRU
 lambda=0
 n=length(x)
 p=length(phi)
-
+print("Here 1")
 
 if(sum(phi^2)==0) {p=0
             fac1=0}
@@ -17,6 +17,7 @@ if(sum(theta^2)==0) {q=0}
 npn.ahead=n+n.ahead
 xhat=rep(0,npn.ahead)
 xbar=mean(x)
+print("Here 2")
 if (d > 3) {cat('d>3','\n')
             return(d)}
 if (d==0) {diffac=0}
@@ -29,6 +30,7 @@ if(s==0) {fac3=0}
 if(s > 0) {seas=rep(0,s)
            seas[s]=1
            fac3=seas}
+print("Here 3")
 #cat('seas',seas,'\n')
 dlam=0
 #cat('lambda',lambda,'\n')
@@ -36,29 +38,38 @@ if(lambda==0) {dlam=0
             fac4=0}
 if(sum(lambda^2)>0) {fac4=lambda}
 #cat('lambda',lambda,'\n')
+print("Here 4")
 prod.fore.tmp=mult.wge(fac1,fac2,fac3,fac4)
+print("facs")
+print(c(fac2,fac3,fac4))
 prod.res.tmp=mult.wge(fac2,fac3,fac4)
 phitot.fore=prod.fore.tmp$model.coef
 phitot.res=prod.res.tmp$model.coef
+print("Here 5")
 #cat('fac1',fac1,'\n')
 #cat('fac2',fac2,'\n')
 #cat('fac3',fac3,'\n')
 #cat('fac4',fac4,'\n')
 ptot.fore=p+d+s+dlam
 ptot.res=d+s+dlam
+print("Here 6")
 #  cat('ptot.res=',ptot.res,'\n')
 # cat('phitot.res',phitot.res,'\n')
 # cat('ptot.fore=',ptot.fore,'\n')
-# cat('phitot.fore',phitot.fore,'\n')                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+# cat('phitot.fore',phitot.fore,'\n')    
+print("Here 7")
+print(ptot.res)
+print(x)
 y.arma=artrans.wge(x,phi.tr=phitot.res,plottr=FALSE)
 #
-
+print("Here 8")
 #BACKCAST RESIDUALS BASED ON FIT TO TRANSFORMED ARMA DATA
 #
 
 res=rep(0,n)
 res
 res=backcast.wge(y.arma,phi=phi,theta=theta,n.back=50)
+print("Here 9")
 res
 ntot.res=length(y.arma)
 resid=rep(0,n)
