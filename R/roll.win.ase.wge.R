@@ -13,7 +13,7 @@
 roll.win.ase.wge = function(series, horizon = 1, s = 0, d = 0, phis = 0, thetas = 0)
 {
   
-  trainingSize = length(phis) + length(thetas) + s + d + 1
+  trainingSize = max(length(phis),length(thetas),s, d)
   numwindows = length(series)-(trainingSize + horizon) + 1
   ASEHolder = numeric(numwindows)
 
