@@ -13,11 +13,11 @@
 roll.win.ase.wge = function(series, horizon = 1, s = 0, d = 0, phis = 0, thetas = 0)
 {
   
-  trainingSize = max(length(phis),length(thetas),s, d)
+  trainingSize = sum(length(phis),length(thetas),s, d) + 1 # plus one is to help backcast.wge
   numwindows = length(series)-(trainingSize + horizon) + 1
-  ASEHolder = numeric(numwindows)
+  RMSEHolder = numeric(numwindows)
 
-  print(paste("Please Hold For a Moment, TSWGE is processing the Rolling Window ASE with", numwindows, "windows."))
+  print(paste("Please Hold For a Moment, TSWGE is processing the Rolling Window RMSE with", numwindows, "windows."))
   
   for( i in 1:numwindows)
   {
@@ -25,18 +25,18 @@ roll.win.ase.wge = function(series, horizon = 1, s = 0, d = 0, phis = 0, thetas 
     #invisible(capture.output(forecasts <- fore.arima.wge(series[i:(i+(trainingSize-1))],phi = phis, theta = thetas, s = s, d = d,n.ahead = horizon)))
     forecasts <- fore.arima.wge(series[i:(i+(trainingSize-1))],phi = phis, theta = thetas, s = s, d = d,n.ahead = horizon)
     
-    ASE = mean((series[(trainingSize+i):(trainingSize+ i + (horizon) - 1)] - forecasts$f)^2)
+    RMSE = sqrt(mean((series[(trainingSize+i):(trainingSize+ i + (horizon) - 1)] - forecasts$f)^2))
     
-    ASEHolder[i] = ASE
+    RMSEHolder[i] = RMSE
     
   }
   
-  ASEHolder
-  hist(ASEHolder, main = "ASEs for Individual Windows")
-  WindowedASE = mean(ASEHolder)
+  RMSEHolder
+  hist(RMSEHolder, main = "RMSEs for Individual Windows")
+  WindowedRMSE = mean(RMSEHolder)
   
-  print("The Summary Statistics for the Rolling Window ASE Are:")
-  print(summary(ASEHolder))
-  print(paste("The Rolling Window ASE is: ",round(WindowedASE,3)))
-  invisible(list(rwASE = WindowedASE, numwindows = numwindows, horizon = horizon, s = s, d = d, phis = phis, thetas = thetas))
+  print("The Summary Statistics for the Rolling Window RMSE Are:")
+  print(summary(RMSEHolder))
+  print(paste("The Rolling Window RMSE is: ",round(WindowedRMSE,3)))
+  invisible(list(rwRMSE = WindowedRMSE, numwindows = numwindows, horizon = horizon, s = s, d = d, phis = phis, thetas = thetas))
 }
