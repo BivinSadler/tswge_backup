@@ -16,7 +16,7 @@ unit.circle.wge = function(real = 0, imaginary = 0)
 #re = mtext(expression(paste(italic("re"))), side = 3, line = -14.5, at = 1.4)
   
 plot.new()
-plot(-1.5:1.5, -1.5:1.5,type="n",asp = 1, xlab=expression(paste(italic("re"))),ylab=expression(paste(italic("im"))),main="Roots and the Unit Circle")
+plot(-1.5:1.5, -1.5:1.5,type="n",asp = 1, xlab=expression(paste(italic("re"))),ylab=expression(paste(italic("im"))),main="Roots and the Unit Circle", cex.axis = 1.5, cex.lab = 1.5, las = 1)
 
 draw.circle(0,0,1,border="blue",lty=2,lwd=2)
 abline(h = 0)
