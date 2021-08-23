@@ -1,5 +1,6 @@
 plotts.wge = function (x,style = 0,ylab = "",xlab = "Time", main = "Realization", col = "black", text_size= 12, lwd = .75, cex = .5, cex.lab = .75, cex.axis = .75, xlim = NULL, ylim = NULL) 
 {
+  #
   #cex.labs <- c(0.9, 0.8, 0.9)
   numrows <- 1
   numcols <- 1
