@@ -17,7 +17,7 @@ roll.win.rmse.nn.wge = function(series, horizon = 1, fit_model)
 if(fit_model$sdummy == FALSE)
 {
   lags = fit_model$lags
-  if(is_null(fit_model$difforder)){d = 0}
+  if(is.null(fit_model$difforder)){d = 0}
   else{
   d = max(fit_model$difforder)
   }
@@ -56,7 +56,7 @@ if(fit_model$sdummy == FALSE)
 else   # This is if there is seasonality ... the problem is that if you give the model, mlp() still recalculates the seasonal dummies.
 {
     lags = fit_model$lags
-    if(is_null(fit_model$difforder)){d = 0}
+    if(is.null(fit_model$difforder)){d = 0}
     else{
       d = max(fit_model$difforder)
     }
