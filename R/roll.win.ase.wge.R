@@ -13,7 +13,7 @@
 roll.win.ase.wge = function(series, horizon = 1, s = 0, d = 0, phis = 0, thetas = 0)
 {
   
-  trainingSize = sum(length(phis),length(thetas),s, d) + 1 # plus one is to help backcast.wge
+  trainingSize = sum(length(phis),length(thetas),s, d) + 1 # sum and plus one is to help backcast.wge, lag.max and ylim plotting issue in fore.arima.wge
   numwindows = length(series)-(trainingSize + horizon) + 1
   RMSEHolder = numeric(numwindows)
 
