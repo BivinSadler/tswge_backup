@@ -3,17 +3,16 @@
 # horizon is how far you want to predict into the future
 # d is the order of the differencing: (1-B^)^d
 # s is the order of the seasonality: (1-B^s)
-# phis = order of the stationary AR term
-# thetas = order of the invertible MA term
+# phi = coefficients of the stationary AR term
+# theta = coefficients of the invertible MA term
 
 # It simply takes the given horizon and the model in the form of s,d,phis and 
 # thetas and figures out how many windows it can create in the data (series) and then calculates the ASE for each window.  
 #The output is the average off all the ASEs from each individual window.  
 
-roll.win.rmse.wge = function(series, horizon = 1, s = 0, d = 0, phis = 0, thetas = 0)
+roll.win.rmse.wge = function(series, horizon = 1, s = 0, d = 0, phi = 0, theta = 0)
 {
 
-  
   
   #DEFINE fore.arma.wge2
   
@@ -173,7 +172,7 @@ roll.win.rmse.wge = function(series, horizon = 1, s = 0, d = 0, phis = 0, thetas
 if(s == 0 & d == 0)
 {
   
-  trainingSize = max(length(phis),length(thetas)) + 1 # The plus 1 is for the backcast residuals which helps with ARMA model with q > 0
+  trainingSize = max(length(phi),length(theta)) + 1 # The plus 1 is for the backcast residuals which helps with ARMA model with q > 0
   numwindows = length(series)-(trainingSize + horizon) + 1   
   RMSEHolder = numeric(numwindows)
 
@@ -181,7 +180,7 @@ if(s == 0 & d == 0)
   
   for( i in 1:numwindows)
   {
-    forecasts <- fore.arma.wge2(series[i:(i+(trainingSize-1))], plot = FALSE, phi = phis, theta = thetas,n.ahead = horizon, xbar = mean(series))
+    forecasts <- fore.arma.wge2(series[i:(i+(trainingSize-1))], plot = FALSE, phi = phi, theta = theta,n.ahead = horizon, xbar = mean(series))
 
     RMSE = sqrt(mean((series[(trainingSize+i):(trainingSize+ i + (horizon) - 1)] - forecasts$f)^2))
     
@@ -190,7 +189,7 @@ if(s == 0 & d == 0)
 }
 else
   {
-    trainingSize = sum(length(phis),length(thetas),s, d) + 1 # sum and plus one is to help backcast.wge, lag.max and ylim plotting issue in fore.arima.wge
+    trainingSize = sum(length(phi),length(theta),s, d) + 1 # sum and plus one is to help backcast.wge, lag.max and ylim plotting issue in fore.arima.wge
     numwindows = length(series)-(trainingSize + horizon) + 1
     RMSEHolder = numeric(numwindows)
     
@@ -200,7 +199,7 @@ else
     {
       
       #invisible(capture.output(forecasts <- fore.arima.wge(series[i:(i+(trainingSize-1))],phi = phis, theta = thetas, s = s, d = d,n.ahead = horizon)))
-      forecasts <- fore.arima.wge3(series[i:(i+(trainingSize-1))],phi = phis, s = 0, d = 0, theta = thetas,n.ahead = horizon, xbar = mean(series))
+      forecasts <- fore.arima.wge3(series[i:(i+(trainingSize-1))],phi = phi, s = 0, d = 0, theta = theta,n.ahead = horizon, xbar = mean(series))
       
       RMSE = sqrt(mean((series[(trainingSize+i):(trainingSize+ i + (horizon) - 1)] - forecasts$f)^2))
       
@@ -219,6 +218,6 @@ else
   print(paste("The Rolling Window RMSE is: ",round(WindowedRMSE,3)))
 
 #output
-  invisible(list(rwRMSE = WindowedRMSE, trainingSize = trainingSize, numwindows = numwindows, horizon = horizon, s = s, d = d, phis = phis, thetas = thetas, RMSEs = RMSEHolder))
+  invisible(list(rwRMSE = WindowedRMSE, trainingSize = trainingSize, numwindows = numwindows, horizon = horizon, s = s, d = d, phi = phi, theta = theta, RMSEs = RMSEHolder))
   
   }
