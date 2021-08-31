@@ -14,7 +14,7 @@ roll.win.rmse.wge = function(series, horizon = 1, s = 0, d = 0, phi = 0, theta =
   \item{thetas}{Vector of MA coefficients}
 }
 \value{
-  \item{rwASE}{The average of the individual ASEs of each window}
+  \item{rwRMSE}{The average of the individual RMSEs of each window}
   \item{numwindows}{The number of windows}
   \item{horizon}{The number of observations ahead to be forecasted.}
   \item{s}{Order of the seasonal difference, default=1}
