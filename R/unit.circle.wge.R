@@ -22,9 +22,20 @@ draw.circle(0,0,1,border="blue",lty=2,lwd=2)
 abline(h = 0)
 abline(v = 0)
 
+if(length(real) == 1){
 # plot the point designated by (real,imaginary)
-points(real,imaginary, pch = 3)
+points(real,imaginary, pch = 19, col = "red")
 lines(c(0,real), c(0,imaginary), lwd = 3, col = "red")
+}
+
+if(length(real) == 2){
+  # plot the point designated by (real,imaginary)
+  points(real[1],imaginary[1], pch = 19, col = "red")
+  lines(c(0,real[1]), c(0,imaginary[1]), lwd = 3, col = "red")
+  points(real[2],imaginary[2], pch = 19, col = "red")
+  lines(c(0,real[2]), c(0,imaginary[2]), lwd = 3, col = "red")
+  }
+
 
 #Calc Length
 length = sqrt(real^2 + imaginary^2)
