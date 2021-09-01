@@ -10,7 +10,7 @@
 # thetas and figures out how many windows it can create in the data (series) and then calculates the ASE for each window.  
 #The output is the average off all the ASEs from each individual window.  
 
-roll.win.rmse.wge = function(series, horizon = 1, s = 0, d = 0, phi = 0, theta = 0)
+roll.win.rmse.wge = function(series, horizon = 2, s = 0, d = 0, phi = 0, theta = 0)
 {
 
   
@@ -180,7 +180,7 @@ if(s == 0 & d == 0)
   
   for( i in 1:numwindows)
   {
-    forecasts <- fore.arma.wge2(series[i:(i+(trainingSize-1))], plot = FALSE, phi = phi, theta = theta,n.ahead = horizon, xbar = mean(series))
+    forecasts <- fore.arma.wge2(series[i:(i+(trainingSize-1))], plot = TRUE, phi = phi, theta = theta,n.ahead = horizon, xbar = mean(series))
 
     RMSE = sqrt(mean((series[(trainingSize+i):(trainingSize+ i + (horizon) - 1)] - forecasts$f)^2))
     
@@ -192,14 +192,13 @@ else
     trainingSize = sum(length(phi),length(theta),s, d) + 1 # sum and plus one is to help backcast.wge, lag.max and ylim plotting issue in fore.arima.wge
     numwindows = length(series)-(trainingSize + horizon) + 1
     RMSEHolder = numeric(numwindows)
-    
+
     print(paste("Please Hold For a Moment, TSWGE is processing the Rolling Window RMSE with", numwindows, "windows."))
     
     for( i in 1:numwindows)
     {
-      
       #invisible(capture.output(forecasts <- fore.arima.wge(series[i:(i+(trainingSize-1))],phi = phis, theta = thetas, s = s, d = d,n.ahead = horizon)))
-      forecasts <- fore.arima.wge3(series[i:(i+(trainingSize-1))],phi = phi, s = 0, d = 0, theta = theta,n.ahead = horizon, xbar = mean(series))
+      forecasts <- fore.arima.wge(series[i:(i+(trainingSize-1))],phi = phi, s = s, d = d, theta = theta,n.ahead = horizon)
       
       RMSE = sqrt(mean((series[(trainingSize+i):(trainingSize+ i + (horizon) - 1)] - forecasts$f)^2))
       

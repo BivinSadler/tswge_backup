@@ -62,10 +62,8 @@ else   # This is if there is seasonality ... the problem is that if you give the
     }
     s = frequency(series)
     trainingSize = 20 # It will recalculate seasonal dummies... need large portion of data
-    print(trainingSize)
     #numwindows = length(series)-(trainingSize + horizon) + 1
     numwindows = 1
-    print(numwindows)
     RMSEHolder = numeric(numwindows)
     MSEHolder = numeric(numwindows)
     #ForecastHolder = numeric(numwindows)
@@ -93,6 +91,6 @@ else   # This is if there is seasonality ... the problem is that if you give the
     print("The Summary Statistics for the Rolling Window RMSE Are:")
     print(summary(RMSEHolder))
     print(paste("The Rolling Window RMSE is: ",round(WindowedRMSE,3)))
-    invisible(list(rwRMSE = WindowedRMSE, rwMSE = WindowedMSE, numwindows = numwindows, horizon = horizon, s = s, d = d, MH= MSEHolder))
+    invisible(list(rwRMSE = WindowedRMSE, rwMSE = WindowedMSE, numwindows = numwindows, horizon = horizon, RMSEs = RMSEHolder))
   } # end big else
 } # end function 
