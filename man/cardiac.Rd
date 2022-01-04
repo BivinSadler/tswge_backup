@@ -1,9 +1,11 @@
 \name{cardiac}
 \alias{cardiac}
 \docType{data}
-\title{classic Cardiac Mortality Data from 1970 - 1979 in LA}
-\description{10 years of weekly cardiac mortality (cmort) data as well as the average weeky temperature (tempr) and the pollution in the air (parts).}
+\title{Weekly Cardiac Mortality Data}
+\description{Weekly cardiac mortality, temperatures, and pollution measures for the years 1970-1978}
 \usage{data("cardiac")}
-\references{"The Time Series Toolkit"}
+\format{ ts object consisting of weekly data}
+\source{Shumway and Stoffer, 1999)}
+\references{"Time Series for Data Sience:Analysis and Forecasting" by Woodward, Sadler, and Robertson}
 \examples{data(cardiac)}
 \keyword{datasets}

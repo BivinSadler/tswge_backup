@@ -1,14 +1,11 @@
 \name{dfw.2011}
-\alias{dfw.20110}
+\alias{dfw.2011}
 \docType{data}
-\title{Dallas Ft. Worth monthly temperatures for January 2011 through December 2020}
-\description{Dallas Ft. Worth monthly temperatures for January 2011 through December 2020 as a numeric vector}
+\title{DFW Monthly Temperatures from January 2011 through December 2020}
+\description{Monthly average temperatures at Dallas Ft. Worth (in Fahrenheit) from January 2011 through December 2020}
 \usage{data("dfw.2011")}
-\format{
-  The format is:
- num [1:120] 42.8 49.5 61.3 70.8 ... 
-}
-\source{weather.gov}
-\examples{
-data(dfw.2011)}
+\format{ ts object consisting of monthly data from January 1900 trough December 2020}
+\source{https://www.weather.gov/fwd/dmotemp}
+\references{"Time Series for Data Sience: Analysis and Forecasting" by Woodward, Sadler, and Robertson}
+\examples{data(dfw.2011)}
 \keyword{datasets}

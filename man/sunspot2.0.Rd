@@ -1,13 +1,11 @@
 \name{sunspot2.0}
 \alias{sunspot2.0}
 \docType{data}
-\title{The Number of Sunspots Per Year Between 1700 and 2020}
-\description{The Number of Sunspots Per Year Between 1700 and 2020}
+\title{Annual Sunspot2.0 Numbers}
+\description{Annual sunspot2.0 numbers from 1700 through 2020}
 \usage{data("sunspot2.0")}
-\format{
-  The format is:
-ts object: start 1700, end = 2020, 8.3  18.3  26.7  38.3  60.0  96.7  48.3  ... }
-\source{Source: WDC-SILSO, Royal Observatory of Belgium, Brussels http://www.sidc.be/silso/datafiles}
-\references{The Joy of Forecasting}
+\format{ ts object consisting of annual data from 1700 through 2020}
+\source{https://www.sidc.oma.be/silso}
+\references{"Time Series for Data Sience: Analysis and Forecasting" by Woodward, Sadler, and Robertson}
 \examples{data(sunspot2.0)}
 \keyword{datasets}

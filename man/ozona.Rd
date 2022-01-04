@@ -1,14 +1,11 @@
 \name{ozona}
 \alias{ozona}
 \docType{data}
-\title{Number of Chicken Fried Steaks Sold at Ozona in Dallas in June and July 2019}
-\description{Number of Chicken Fried Steaks Sold at Ozona in Dallas in June and July 2019}
+\title{Daily Number of Chicken-Fried Steaks Sold}
+\description{Daily number of chicken-fried steaks sold at Ozona Bar and Grill during June and July 2019}
 \usage{data("ozona")}
-\format{
-  The format is:
- num [1:381] -0.0049 -0.0083 0.0127 0.0068 -0.0259 0.0059 0.0386 -0.0405 -0.0269 0.0474 ...
-}
-\source{Cory Wauson, GM of Ozona}
-\references{The Joy of Forcasting}
+\format{ ts object consisting of number of chicken fried steaks sold daily during June and July, 2019}
+\source{"Time Series for Data Sience: Analysis and Forecasting" by Woodward, Sadler, and Robertson}
+\references{"Time Series for Data Sience: Analysis and Forecasting" by Woodward, Sadler, and Robertson}
 \examples{data(ozona)}
 \keyword{datasets}
