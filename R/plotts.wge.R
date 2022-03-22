@@ -38,13 +38,13 @@ plotts.wge = function (x,style = 0,ylab = "",xlab = "Time", main = "", col = "bl
       df = data.frame(x = t, y = x)
       df %>% ggplot(aes(x = x, y = y)) + geom_point() + 
         geom_line(color = col, size = lwd) + ggtitle(main) + xlab(xlab) + 
-        ylab(ylab) + theme(axis.text=element_text(size=text_size)) + coord_cartesian(xlim = xlim, ylim = ylim) 
+        ylab(ylab) + theme(text = element_text(size=rel(text_size))) + coord_cartesian(xlim = xlim, ylim = ylim) 
     }
     else if (class(x) == "ts") {
       df = data.frame(x = zoo::as.yearmon(time(x)), y = x)
       df %>% ggplot(aes(x = x, y = y)) + geom_point() + 
         geom_line(color = col, size = lwd) + ggtitle(main) + xlab(xlab) + 
-        ylab(ylab) + theme(axis.text=element_text(size=text_size)) + coord_cartesian(xlim = xlim, ylim = ylim)
+        ylab(ylab) + theme(text = element_text(size=rel(text_size))) + coord_cartesian(xlim = xlim, ylim = ylim)
     }
   }
 }
