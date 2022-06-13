@@ -1,12 +1,12 @@
-ma.pred.wge=function(x,order=3,k.ahead=1,plot=TRUE)
+ma.pred.wge=function(x,order=3,n.ahead=1,plot=TRUE)
 {
 
 k=order
 n=length(x)
 xx=rep(0,n)
 for(t in 1:n) xx[t]=x[t]
-nka=n+k.ahead
-cat(n,k.ahead,nka,'\n')
+nka=n+n.ahead
+cat(n,n.ahead,nka,'\n')
 x.sm=rep(NA,nka)
 k2=k/2
 k2=trunc(k2)
@@ -23,7 +23,7 @@ ts1p1=ts1+1
 np1=n+1
 for(i in ts1:np1) x.sm[i]=x.sm[i-1]-xx[i-1-k]/k+xx[i-1]/k
 #
-if(k.ahead>1) {
+if(n.ahead>1) {
 np2=n+2
 xx[np1]=x.sm[np1]
 for(i in np2:nka) {
