@@ -6,7 +6,7 @@
 \arguments{
   \item{x}{Vector containing original realization}
   \item{order}{Order (odd or even integer) of moving average predictor (default=3)}
-  \item{k.ahead}{Number of steps ahead to forecast beyond the end of the data (default=1)}
+  \item{n.ahead}{Number of steps ahead to forecast beyond the end of the data (default=1)}
   \item{plot}{If plot=TRUE then plots of the data and moving average predictors are plotted}
 }
 \value{
