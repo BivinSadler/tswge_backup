@@ -12,8 +12,9 @@ fore.aruma.wge=function(x,phi=0,theta=0,d=0,s=0,lambda=0, n.ahead=5,lastn=FALSE,
 #n.ahead=20
 n=length(x)
 p=length(phi)
-if(phi==0) {p=0
-            fac1=0}
+if(p == 1)
+   {if(phi==0) {p=0
+            fac1=0}}
 if(sum(phi^2)>0) {fac1=phi}
 q=length(theta)
 if(sum(theta^2)==0) {q=0}
