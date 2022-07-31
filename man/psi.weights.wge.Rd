@@ -2,7 +2,7 @@
 \alias{psi.weights.wge}
 \title{Calculate psi weights for an ARMA model}
 \description{Given the coefficients of the AR and MA parts of an ARMA model, this function calculates the psi weights }
-\usage{psi.weights.wge(phi = 0, theta = 0, lag.max = 0)}
+\usage{psi.weights.wge(phi = 0, theta = 0, lag.max = 5)}
 \arguments{
   \item{phi}{Vector of AR coefficients (as in "Applied Time Series Analysis with R, 2nd edition" by Woodward, Gray, and Elliott (uses Box and Jenkins notation))}
   \item{theta}{Vector of MA coefficients (as in ATSA and Box Jenkins texts)}
