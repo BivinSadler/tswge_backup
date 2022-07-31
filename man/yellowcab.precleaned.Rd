@@ -1,11 +1,14 @@
 \name{yellowcab.precleaned}
 \alias{yellowcab.precleaned}
 \docType{data}
-\title{Yellow Cab Trips Per Month}
-\description{Number of trips oper month for Yellow Cabs in NY City from January 2019 through December 2020}
+\title{Precleaned Yellow Cab data}
+\description{The number of Yellow Cab Trips in NYC before and during the COVID outbreak:  January 2019 through February 2021}
 \usage{data("yellowcab.precleaned")}
-\format{ ts object consisting of monthly number of trips from January 2019 through December 2020}
-\source{"Time Series for Data Sience: Analysis and Forecasting" by Woodward, Sadler, and Robertson}
-\references{"Time Series for Data Sience: Analysis and Forecasting" by Woodward, Sadler, and Robertson}
+\format{
+  The format is:
+ Time-Series [1:26] from 2019 to 2021: 247315 250654 252634 247742 ...
+}
+\source{NYC Taxi and Limousine website}
+\references{Time Series Tool Kit by Woodward, Sadler, and Robertson}
 \examples{data(yellowcab.precleaned)}
 \keyword{datasets}

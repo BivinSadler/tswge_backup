@@ -11,6 +11,6 @@ List of 2
  $ spec: num [1:256] 0.511 0.568 0.733 0.991 1.32 ...
 }
 \source{Simulated data}
-\references{Time Series for Data Science: Analysis and Forecasting by Woodward, Sadler, and Robertson}
+\references{Time Series Analysis for Data Science: Analysis and Forecasting by Woodward, Sadler, and Robertson}
 \examples{data(linearchirp)}
 \keyword{datasets}

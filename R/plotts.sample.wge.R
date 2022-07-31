@@ -9,7 +9,7 @@
 # Plot a time series realization, x, sample autocorrelations, periodogram, and Parzen window smoother (based on #default truncation point 2(n)^.5)
 #
 #
-plotts.sample.wge=function(x,lag.max=25,trunc=0,arlimits=FALSE,periodogram=FALSE) 
+plotts.sample.wge=function(x,lag.max=25,trunc=0,arlimits=FALSE,speclimits=c(0,0),periodogram=FALSE) 
 {
 #
 #
@@ -25,13 +25,13 @@ plotts.sample.wge=function(x,lag.max=25,trunc=0,arlimits=FALSE,periodogram=FALSE
 xbar=mean(x)
 cex.labs=c(1,1,1)
 if(periodogram == TRUE) {
-#dev.new(width=8,height=6.5)
+dev.new(width=8,height=6.5)
 numrows=2
 numcols=2
 par(mfrow=c(numrows,numcols),mar=c(4.3,3.5,1.6,1))}
 #
 if(periodogram == FALSE) {
-#dev.new(width=11,height=3)
+dev.new(width=11,height=3)
 numrows=1
 numcols=3
 par(mfrow=c(numrows,numcols),mar=c(4.3,3.5,1.6,1))}
@@ -102,7 +102,8 @@ rep(0,n-M-1)
 pzgram[i]=aut[1]*weight[1]+2*sum(aut[-1]*weight[-1]*cosvector)
 }
 dbz=10*log10(pzgram)
-plot(freq,dbz,type='l',xaxt='n',yaxt='n',cex=0.5,pch=16,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='')
+if(sum(speclimits^2)==0) speclimits=c(min(dbz),max(dbz))
+plot(freq,dbz,type='l',xaxt='n',yaxt='n',cex=0.5,pch=16,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='',ylim=speclimits)
 if(periodogram==FALSE) {axis(side=1,cex.axis=1.4,mgp=c(3,0.45,0),tcl=-.3)};
 if(periodogram==TRUE) {axis(side=1,cex.axis=1.2,mgp=c(3,0.45,0),tcl=-.3)};
 if(periodogram==FALSE) {axis(side=2,las=1,cex.axis=1.4,mgp=c(3,.45,0),tcl=-.3)}
@@ -133,8 +134,8 @@ if(periodogram == TRUE) {
 db=10*log10(pgram)
 nf=length(db)
 min.per=min(db[1:nf])
-if(n <= 200) {plot(freq,db,type='n',xaxt='n',yaxt='n',cex=0.5,pch=16,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='')}
-if(n > 200) {plot(freq,db,type='l',xaxt='n',yaxt='n',cex=0.5,pch=16,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='')}
+if(n <= 200) {plot(freq,db,type='n',xaxt='n',yaxt='n',cex=0.5,pch=16,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='',ylim=speclimits)}
+if(n > 200) {plot(freq,db,type='l',xaxt='n',yaxt='n',cex=0.5,pch=16,cex.lab=.75,cex.axis=.75,lwd=.75,xlab='',ylab='',ylim=speclimits)}
 if(periodogram==FALSE) {axis(side=1,cex.axis=1.4,mgp=c(3,0.45,0),tcl=-.3)};
 if(periodogram==TRUE) {axis(side=1,cex.axis=1.2,mgp=c(3,0.45,0),tcl=-.3)};
 if(periodogram==FALSE) {axis(side=2,las=1,cex.axis=1.4,mgp=c(3,.45,0),tcl=-.3)}

@@ -1,11 +1,13 @@
-\name{uspop}
-\alias{uspop}
+\name{wtcrude}
+\alias{wtcrude}
 \docType{data}
-\title{Annual US Population}
-\description{Annual US population from 1900 through 2020}
-\usage{data("uspop")}
-\format{ ts object consisting of annual data from 1900 through 2020}
-\source{https://www.usafacts.org}
-\references{"Time Series for Data Sience: Analysis and Forecasting" by Woodward, Sadler, and Robertson}
-\examples{data(uspop)}
+\title{West Texas Intermediate Crude Oil Prices}
+\description{Monthly West Texas intermediate crude oil prices from January 2000 through October 2009.}
+\usage{data("wtcrude")}
+\format{
+  The format is:
+ num [1:118] 27.2 29.4 29.9 25.7 28.8 ...
+}
+\source{Internet}
+\references{"Applied Time Series Analysis with R, 2nd edition" by Woodward, Gray, and Elliott}
 \keyword{datasets}
