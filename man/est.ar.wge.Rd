@@ -2,7 +2,7 @@
 \alias{est.ar.wge}
 \title{Estimate parameters of an AR(p) model}
 \description{Estimate parameters of an AR(p) with p assumed known. Outputs residuals (backcast0 and white noise variance estimate.)}
-\usage{est.ar.wge(x, p = 2, factor = TRUE, method = "mle")}
+\usage{est.ar.wge(x, p = 2, factor = TRUE, method = "mle", type = "mle")}
 \arguments{
   \item{x}{Realization}
   \item{p}{AR order}

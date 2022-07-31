@@ -1,14 +1,15 @@
 exportPattern("^[[:alpha:]]+")
    importFrom("grDevices", "gray", "hcl")
    importFrom("graphics", "abline", "axis", "image", "layout", "lines",
-              "mtext", "par", "plot", "points", "segments", "title")
+              "mtext", "par", "plot", "points", "segments", "title","hist", "plot.new")
    importFrom("stats", "ARMAtoMA", "acf", "approx", "ar.burg", "ar.mle",
               "ar.yw", "arima", "arima.sim", "coef", "fft", "lm",
               "na.pass", "pchisq", "predict", "rnorm", "spec.pgram",
-              "vcov")
+              "vcov","HoltWinters", "frequency", "qnorm", "ts", "var")
    importFrom("astsa", "ARMAtoAR")
    import("magrittr")
    import("zoo")
    import("ggplot2")
    import("dplyr")
    import("plotrix")
+   importFrom("grDevices", "dev.new")

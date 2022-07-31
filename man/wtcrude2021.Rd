@@ -8,6 +8,6 @@
   ts object starting at Jan 1990 and ending Jan 2021
 }
 \source{https://fred.stlouisfed.org/series/POILWTIUSDM}
-\references{"The Joy of Forecasting"}
+\references{"Time Series for Data Science"}
 \examples{data(wtcrude)}
 \keyword{datasets}
