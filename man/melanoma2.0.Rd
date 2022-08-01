@@ -9,6 +9,6 @@
 ts object: start 1700, end = 2020, 8.3  18.3  26.7  38.3  60.0  96.7  48.3  ... }
 \source{Source for Sunspots: WDC-SILSO, Royal Observatory of Belgium, Brussels http://www.sidc.be/silso/datafiles
 Source for Melanoma: Houghton, A., E. W. Munster, and M. V. Viola. (1978). Increased Incidence of Malignant Melanoma After Peaks of Sunspot Activity. The Lancet, 8, 759–760.}
-\references{The Time Series Tool Kit}
+\references{Time Series for Data Science}
 \examples{data(melanoma2.0)}
 \keyword{datasets}
