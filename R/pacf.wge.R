@@ -9,8 +9,11 @@
 # Plot a pacf of time series realization
 #
 #
-pacf.wge=function(x,lag.max=25,limits=FALSE, method='yw') 
+pacf.wge=function(x,lag.max=NULL,plot=TRUE,na.action,limits=FALSE, method='yw')
+
 {
+registerS3method("pacf","wge","add1.wge", envir=getNamespace("stats"))
+
 #
 #
 #     x is a vector of length n containing the time series realization  
@@ -26,9 +29,9 @@ par(mfrow=c(numrows,numcols),mar=c(4.2,4.2,8,1))
 #
 n=length(x)
 nm1=n-1
-pacf.burg=rep(0,nm1)
-pacf.yw=rep(0,nm1)
-pacf.mle=rep(0,nm1)
+pacf_burg=rep(0,nm1)
+pacf_yw=rep(0,nm1)
+pacf_mle=rep(0,nm1)
 if(lag.max > nm1) {lag.max=nm1}
 t=1:n
 naut=lag.max
@@ -36,19 +39,19 @@ k=1:naut
 if (method=="yw") {
    for(order in 1:lag.max) {
       temp=est.ar.wge(x,p=order,method='yw',factor=FALSE)
-      pacf.yw[order]=temp$phi[order]
+      pacf_yw[order]=temp$phi[order]
                             }
                    }
 if (method=="burg") {
    for(order in 1:lag.max) {
       temp=est.ar.wge(x,p=order,method='burg',factor=FALSE)
-      pacf.burg[order]=temp$phi[order]
+      pacf_burg[order]=temp$phi[order]
                             }
                    }
 if (method=="mle") {
    for(order in 1:lag.max) {
       temp=est.ar.wge(x,p=order,method='mle',factor=FALSE)
-      pacf.mle[order]=temp$phi[order]
+      pacf_mle[order]=temp$phi[order]
                             }
                    }
 
@@ -60,9 +63,9 @@ if (method=="mle") {
 ul=2/sqrt(n)
 ll=-ul
 #
-if(method=='yw') plot(k,pacf.yw[1:naut],type='h',xaxt='n',yaxt='n',cex=0.0,cex.lab=.75,cex.axis=.75,lwd=1,xlab='',ylab='',ylim=c(-1,1))
-if(method=='burg') plot(k,pacf.burg[1:naut],type='h',xaxt='n',yaxt='n',cex=0.0,cex.lab=.75,cex.axis=.75,lwd=1,xlab='',ylab='',ylim=c(-1,1))
-if(method=='mle') plot(k,pacf.mle[1:naut],type='h',xaxt='n',yaxt='n',cex=0.0,cex.lab=.75,cex.axis=.75,lwd=1,xlab='',ylab='',ylim=c(-1,1))
+if(method=='yw') plot(k,pacf_yw[1:naut],type='h',xaxt='n',yaxt='n',cex=0.0,cex.lab=.75,cex.axis=.75,lwd=1,xlab='',ylab='',ylim=c(-1,1))
+if(method=='burg') plot(k,pacf_burg[1:naut],type='h',xaxt='n',yaxt='n',cex=0.0,cex.lab=.75,cex.axis=.75,lwd=1,xlab='',ylab='',ylim=c(-1,1))
+if(method=='mle') plot(k,pacf_mle[1:naut],type='h',xaxt='n',yaxt='n',cex=0.0,cex.lab=.75,cex.axis=.75,lwd=1,xlab='',ylab='',ylim=c(-1,1))
 abline(h=0)
 if(limits==TRUE) {abline(h=ul,lty=2)
                     abline(h=-ul,lty=2)}
@@ -73,9 +76,9 @@ if(method=='burg') mtext(side=c(1,2,1),cex=cex.labs,text=c('Lag','PACF','Burg Pa
 if(method=='mle') mtext(side=c(1,2,1),cex=cex.labs,text=c('Lag','PACF','MLE Partial Autocorrelations'),line=c(1.7,2.4,3))
 #                }
 #
-if(method=='yw')out1=list(pacf.yw=pacf.yw[1:naut])
-if(method=='burg')out1=list(pacf.burg=pacf.burg[1:naut])
-if(method=='mle')out1=list(pacf.mle=pacf.mle[1:naut])
+if(method=='yw')out1=list(pacf_yw=pacf_yw[1:naut])
+if(method=='burg')out1=list(pacf_burg=pacf_burg[1:naut])
+if(method=='mle')out1=list(pacf_mle=pacf_mle[1:naut])
 return(out1)                       
 }
 

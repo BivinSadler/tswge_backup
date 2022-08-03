@@ -1,15 +1,23 @@
 exportPattern("^[[:alpha:]]+")
-   importFrom("grDevices", "gray", "hcl")
-   importFrom("graphics", "abline", "axis", "image", "layout", "lines",
-              "mtext", "par", "plot", "points", "segments", "title","hist", "plot.new")
-   importFrom("stats", "ARMAtoMA", "acf", "approx", "ar.burg", "ar.mle",
-              "ar.yw", "arima", "arima.sim", "coef", "fft", "lm",
-              "na.pass", "pchisq", "predict", "rnorm", "spec.pgram",
-              "vcov","HoltWinters", "frequency", "qnorm", "ts", "var")
+  importFrom("grDevices", "gray", "hcl")
+  importFrom("graphics", "abline", "axis", "image", "layout", "lines",
+             "mtext", "par", "points", "segments", "title")
+  importFrom("stats", "ARMAtoMA", "acf", "approx", "ar.burg", "ar.mle",
+             "ar.yw", "arima", "arima.sim", "coef", "fft", "lm",
+             "na.pass", "pchisq", "predict", "rnorm", "spec.pgram",
+             "vcov")
+   importFrom("graphics", "hist", "plot.new")
+   importFrom("stats", "HoltWinters", "frequency", "qnorm", "ts", "var")
    importFrom("astsa", "ARMAtoAR")
    import("magrittr")
    import("zoo")
    import("ggplot2")
    import("dplyr")
    import("plotrix")
+   import("tidyverse")
    importFrom("grDevices", "dev.new")
+   importFrom("nnfor","mlp")
+   importFrom("stats", "time")
+   import("forecast")
+
+

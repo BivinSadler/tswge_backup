@@ -1,4 +1,4 @@
-fore.aruma.wge=function(x,phi=0,theta=0,d=0,s=0,lambda=0, n.ahead=5,lastn=FALSE, plot=TRUE,alpha=.05,limits=TRUE)
+fore.aruma.wge=function(x,phi=0,theta=0,d=0,s=0,lambda=0,n.ahead=5,lastn=FALSE,plot=TRUE,alpha=.05,limits=TRUE)
 {
 #x=ngen.aruma.wge(n=100,phi=c(0,-.9),d=1,s=4,sn=50)
 #n=100

@@ -9,6 +9,6 @@
  Time-Series [1:26] from 2019 to 2021: 247315 250654 252634 247742 ...
 }
 \source{NYC Taxi and Limousine website}
-\references{Time Series Tool Kit by Woodward, Sadler, and Robertson}
+\references{Time Series for Data Science Woodward, Sadler, and Robertson}
 \examples{data(yellowcab.precleaned)}
 \keyword{datasets}

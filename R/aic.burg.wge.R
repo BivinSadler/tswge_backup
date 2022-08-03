@@ -7,7 +7,7 @@ x = x - mean(x)
     aicc = 99999
     type1=type
     for (j in p)  {
-        w = est.ar.wge(x,p=j,type='burg',factor=FALSE)
+        w = est.ar.wge(x,p=j,method='burg',factor=FALSE)
                    phi = w$phi
    
           res = backcast.wge(x, phi = phi,theta=0, n.back = 50)

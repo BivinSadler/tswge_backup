@@ -2,15 +2,17 @@
 \alias{fore.sigplusnoise.wge}
 \title{Forecasting signal plus noise models}
 \description{Forecast models of the form line plus AR noise or cosine plus AR noise with known frequency}
-\usage{fore.sigplusnoise.wge(x,linear=TRUE,freq=0,max.p,n.ahead=10,lastn=FALSE,plot=TRUE,limits)}
+\usage{fore.sigplusnoise.wge(x,linear=TRUE,method="mle",freq=0,max.p=5,n.ahead=10,lastn=FALSE,plot=TRUE,alpha=.05,limits=TRUE)}
 \arguments{
   \item{x}{The variable containing the realization to be analyzed}
   \item{linear}{If TRUE then the program forecasts a line plus noise model.  If FALSE the model is cosine plus noise}
+  \item{method}{Estimation method}
   \item{freq}{Frequency of the cosine term. freq is ignored when using line plus noise}
   \item{max.p}{Max value of p for the ARp model fit to the noise}
   \item{n.ahead}{The number of steps ahead to forecast}
   \item{lastn}{If TRUE then the function forecasts the last n.ahead values of the realization. If FALSE the the forecasts are for n.ahead steps beyond the end of the realization}
   \item{plot}{If TRUE then the forecasts and realization are plotted}
+  \item{alpha}{Significance level}
   \item{limits}{If TRUE the forecast limits calculated and plotted}
 }
 \value{

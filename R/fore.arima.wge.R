@@ -17,7 +17,6 @@ if(sum(theta^2)==0) {q=0}
 npn.ahead=n+n.ahead
 xhat=rep(0,npn.ahead)
 xbar=mean(x)
-
 if (d > 3) {cat('d>3','\n')
             return(d)}
 if (d==0) {diffac=0}
@@ -30,7 +29,6 @@ if(s==0) {fac3=0}
 if(s > 0) {seas=rep(0,s)
            seas[s]=1
            fac3=seas}
-
 #cat('seas',seas,'\n')
 dlam=0
 #cat('lambda',lambda,'\n')
@@ -38,25 +36,20 @@ if(lambda==0) {dlam=0
             fac4=0}
 if(sum(lambda^2)>0) {fac4=lambda}
 #cat('lambda',lambda,'\n')
-
 prod.fore.tmp=mult.wge(fac1,fac2,fac3,fac4)
-
 prod.res.tmp=mult.wge(fac2,fac3,fac4)
 phitot.fore=prod.fore.tmp$model.coef
 phitot.res=prod.res.tmp$model.coef
-
 #cat('fac1',fac1,'\n')
 #cat('fac2',fac2,'\n')
 #cat('fac3',fac3,'\n')
 #cat('fac4',fac4,'\n')
 ptot.fore=p+d+s+dlam
 ptot.res=d+s+dlam
-
 #  cat('ptot.res=',ptot.res,'\n')
 # cat('phitot.res',phitot.res,'\n')
 # cat('ptot.fore=',ptot.fore,'\n')
-# cat('phitot.fore',phitot.fore,'\n')    
-
+# cat('phitot.fore',phitot.fore,'\n')                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 y.arma=artrans.wge(x,phi.tr=phitot.res,plottr=FALSE)
 #
 
@@ -65,16 +58,13 @@ y.arma=artrans.wge(x,phi.tr=phitot.res,plottr=FALSE)
 
 res=rep(0,n)
 res
-
 res=backcast.wge(y.arma,phi=phi,theta=theta,n.back=50)
-
 res
 ntot.res=length(y.arma)
 resid=rep(0,n)
 resid
 for (i in 1:ntot.res){resid[ptot.res+i]=res[i]}
 resid
-
 #
 #
 # Calculate Box-Jenkins Forecasts
@@ -116,7 +106,6 @@ xi=psi.weights.wge(phitot.fore,theta,lag.max=n.ahead)
 #
 #
 #
-
 #Setting up for plots
 nap1=n.ahead+1
 fplot=rep(0,nap1)
@@ -134,10 +123,7 @@ resid
 for (i in p1:n) {wnv=wnv+resid[i]**2}
 wnv=wnv/(n-ptot.res)
 xisq[1]=1
-if(n.ahead > 1)
-{
-  for (i in 2:n.ahead) {xisq[i]=xisq[i-1]+xi[i-1]^2}
-}
+for (i in 2:n.ahead) {xisq[i]=xisq[i-1]+xi[i-1]^2}
 for (i in 1:n.ahead) {se[i]=sqrt(wnv*xisq[i])}
 fplot[1]=x[mm]
 for (i in 1:n.ahead) {fplot[i+1]=xhat[mm+i]}

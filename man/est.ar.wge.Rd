@@ -2,13 +2,12 @@
 \alias{est.ar.wge}
 \title{Estimate parameters of an AR(p) model}
 \description{Estimate parameters of an AR(p) with p assumed known. Outputs residuals (backcast0 and white noise variance estimate.)}
-\usage{est.ar.wge(x, p = 2, factor = TRUE, method = "mle", type = "mle")}
+\usage{est.ar.wge(x, p = 2, factor = TRUE, method = "mle")}
 \arguments{
   \item{x}{Realization}
   \item{p}{AR order}
   \item{factor}{If TRUE (default) a factor table is printed for the estimated model}
   \item{method}{Either "mle" (default), "burg", or "yw"}
-  \item{type}{Provded for backwards compatabilty.  This is the same argument as method. See details.}
 }
 \value{
   \item{method}{Estimation method used: MLE, Burg, or YW}

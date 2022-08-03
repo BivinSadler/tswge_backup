@@ -1,4 +1,4 @@
-function (x, style = 0, ylab = "", xlab = "Time", 
+plotts.wge=function(x, style = 0, xlab = "", ylab = "Time", 
     main = "", col = "black", text_size = 12, lwd = 0.75, 
     cex = 0.5, cex.lab = 0.75, cex.axis = 0.75, xlim = NULL, 
     ylim = NULL) 
