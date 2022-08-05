@@ -2,7 +2,8 @@
 \alias{plotts.sample.wge}
 \title{Plot Data, Sample Autocorrelations, Periodogram, and Parzen Spectral Estimate}
 \description{For a given realization, this function plots the data, and calculates and plots the sample autocorrelations, periodogram, and Parzen window spectral estimator in a 2x2 array of plots.}
-\usage{plotts.sample.wge(x, lag.max = 25, trunc = 0, arlimits=FALSE,speclimits=c(0,0),periodogram=FALSE)}
+\usage{plotts.sample.wge(x, lag.max = 25, trunc = 0, arlimits=FALSE,speclimits=c(0,0),
+periodogram=FALSE)}
 \arguments{
   \item{x}{A vector containing the realization}
   \item{lag.max}{The maximum lag at which to calculate the sample autocorrelations}

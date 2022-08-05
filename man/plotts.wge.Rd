@@ -2,7 +2,8 @@
 \alias{plotts.wge}
 \title{Plot a time series realization}
 \description{Given a realization contained in a vector, this function plots it as a time series realization}
-\usage{plotts.wge(x,style = 0, xlab = "", ylab = "Time",main="",col='black',text_size=12,lwd=0.75,cex=0.5,cex.lab=0.75,cex.axis=0.75,xlim=NULL,ylim=NULL)}
+\usage{plotts.wge(x,style = 0, xlab = "", ylab = "Time",main="",col='black',text_size=12,
+lwd=0.75,cex=0.5,cex.lab=0.75,cex.axis=0.75,xlim=NULL,ylim=NULL)}
 \arguments{
   \item{x}{The vector containing the time series realization to be plotted}
   \item{style}{If style is 0 then a simple plot of the realization is rendered.  If style is 1 then a ggplot is rendered.}

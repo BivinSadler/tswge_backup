@@ -1,8 +1,8 @@
-\name{exp.smooth.wge}
-\alias{exp.smooth.wge}
+\name{expsmooth.wge}
+\alias{expsmooth.wge}
 \title{Exponential Smoothing}
 \description{Performs exponential smoothing on the data in vector x}
-\usage{exp.smooth.wge(x,alpha=NULL,n.ahead=0,plot=TRUE)}
+\usage{expsmooth.wge(x,alpha=NULL,n.ahead=0,plot=TRUE)}
 \arguments{
   \item{x}{Vector containing realization}
   \item{alpha}{Alpha value}
@@ -16,6 +16,6 @@
 \references{"Time Series for Data Science" by Woodward, Sadler, and Robertson}
 \author{Wayne Woodward}
 \examples{data(wtcrude2020)
-exp.smooth.wge(wtcrude2020)}
+expsmooth.wge(wtcrude2020)}
 \keyword{ smoothing }
 \keyword{ forecasting }

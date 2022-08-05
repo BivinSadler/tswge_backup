@@ -3,7 +3,8 @@
 \title{Function for forecasting from known model which may have (1-B)^d, seasonal, and/or other nonstationary factors}
 \description{This function calculates forecasts from a known model that may have stationary ARMA components as well as (1-B)^d, seasonal, and/or other nonstationary factors}
 \usage{
-fore.aruma.wge(x,phi=0,theta=0,d=0,s=0,lambda=0,n.ahead=5,lastn=FALSE,plot=TRUE,alpha=.05,limits=TRUE)
+fore.aruma.wge(x,phi=0,theta=0,d=0,s=0,lambda=0,n.ahead=5,
+lastn=FALSE,plot=TRUE,alpha=.05,limits=TRUE)
 }
 \arguments{
   \item{x}{Realization to be forecast from}

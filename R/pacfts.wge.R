@@ -9,11 +9,9 @@
 # Plot a pacf of time series realization
 #
 #
-pacf.wge=function(x,lag.max=NULL,plot=TRUE,na.action,limits=FALSE, method='yw')
+pacfts.wge=function(x,lag.max=NULL,plot=TRUE,na.action,limits=FALSE, method='yw')
 
 {
-registerS3method("pacf","wge","add1.wge", envir=getNamespace("stats"))
-
 #
 #
 #     x is a vector of length n containing the time series realization  

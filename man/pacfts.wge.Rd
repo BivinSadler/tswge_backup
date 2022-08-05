@@ -1,8 +1,8 @@
-\name{pacf.wge}
-\alias{pacf.wge}
+\name{pacfts.wge}
+\alias{pacfts.wge}
 \title{Compute partial autocorrelations}
 \description{Compute partial autocorrelations using either YW (default and the classical method), Burg, or ML estimates.)}
-\usage{pacf.wge(x,lag.max=NULL, plot=TRUE,na.action,limits=FALSE,method ='yw')}
+\usage{pacfts.wge(x,lag.max=NULL, plot=TRUE,na.action,limits=FALSE,method ='yw')}
 \arguments{
   \item{x}{Realization}
   \item{lag.max}{ Max lag}
@@ -18,7 +18,7 @@
 \references{"Time Series for Data Science: Analysis and Forecasting with R" by Woodward, Sadler, and Gray}
 \author{Wayne Woodward}
 \examples{data(sunspot2.0)
-          pacf.wge(sunspot2.0,lag.max=10,method='burg')}
+          pacfts.wge(sunspot2.0,lag.max=10,method='burg')}
 \keyword{ PACF }
 \keyword{ partial autocorrelations}
 \keyword{ Burg }

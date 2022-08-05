@@ -1,7 +1,7 @@
-exp.smooth.wge=function(x,alpha=NULL,n.ahead=0,plot=TRUE)
+expsmooth.wge=function(x,alpha=NULL,n.ahead=0,plot=TRUE)
+#registerS3method("exp","default",base::exp)
+#registerS3method("exp","smooth.wge",expsmooth.wge)
 {
-
-registerS3method("exp","wge","add1.wge", envir=getNamespace("base"))
 alpha=alpha
 n=length(x)
 npn.ahead=n+n.ahead

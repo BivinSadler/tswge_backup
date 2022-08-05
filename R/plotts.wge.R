@@ -7,6 +7,7 @@ plotts.wge=function(x, style = 0, xlab = "", ylab = "Time",
     numcols <- 1
     n = length(x)
     t = 1:n
+    y=rep(0,n)
     if (style == 0) {
         if (class(x) != "ts") {
             if (n <= 200) {

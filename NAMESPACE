@@ -5,7 +5,7 @@ exportPattern("^[[:alpha:]]+")
   importFrom("stats", "ARMAtoMA", "acf", "approx", "ar.burg", "ar.mle",
              "ar.yw", "arima", "arima.sim", "coef", "fft", "lm",
              "na.pass", "pchisq", "predict", "rnorm", "spec.pgram",
-             "vcov")
+             "vcov","pacf")
    importFrom("graphics", "hist", "plot.new")
    importFrom("stats", "HoltWinters", "frequency", "qnorm", "ts", "var")
    importFrom("astsa", "ARMAtoAR")
@@ -19,5 +19,3 @@ exportPattern("^[[:alpha:]]+")
    importFrom("nnfor","mlp")
    importFrom("stats", "time")
    import("forecast")
-
-
