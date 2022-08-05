@@ -2,7 +2,7 @@
 \alias{pacfts.wge}
 \title{Compute partial autocorrelations}
 \description{Compute partial autocorrelations using either YW (default and the classical method), Burg, or ML estimates.)}
-\usage{pacfts.wge(x,lag.max=NULL, plot=TRUE,na.action,limits=FALSE,method ='yw')}
+\usage{pacfts.wge(x,lag.max=5, plot=TRUE,na.action,limits=FALSE,method ='yw')}
 \arguments{
   \item{x}{Realization}
   \item{lag.max}{ Max lag}

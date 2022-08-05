@@ -9,8 +9,7 @@
 # Plot a pacf of time series realization
 #
 #
-pacfts.wge=function(x,lag.max=NULL,plot=TRUE,na.action,limits=FALSE, method='yw')
-
+pacfts.wge=function(x,lag.max=5,plot=TRUE,na.action,limits=FALSE, method='yw')
 {
 #
 #
