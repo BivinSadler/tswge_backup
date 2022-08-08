@@ -50,6 +50,7 @@ plotts.wge=function(x, style = 0, xlab = "Time", ylab = "",
     }
     else if(tst == 1) {
       df = data.frame(x = zoo::as.yearmon(time(x)), y = x)
+      df$y = as.numeric(df$y)
       df %>% ggplot(aes(x = x, y = y)) + geom_point() + 
         geom_line(color = col, size = lwd) + ggtitle(main) + 
         xlab(xlab) + ylab(ylab) + theme(text = element_text(size = (text_size))) + 
