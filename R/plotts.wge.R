@@ -1,5 +1,5 @@
 plotts.wge=function(x, style = 0, xlab = "Time", ylab = "", 
-                    main = "", col = "black", text_size = 5, lwd = 0.75, 
+                    main = "", col = "black", text_size = 12, lwd = 0.75, 
                     cex = 0.5, cex.lab = 0.75, cex.axis = 0.75, xlim = NULL, 
                     ylim = NULL) 
 {
